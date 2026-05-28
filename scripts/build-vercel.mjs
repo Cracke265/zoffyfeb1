@@ -1,55 +1,42 @@
 /**
- * Vercel build helper for TanStack Start.
- * TanStack Start does NOT generate index.html (it's SSR-first).
- * This script runs the build and creates a static index.html entry
- * so Vercel can serve the app as a SPA.
+ * Vercel SSG Helper for TanStack Start
+ * 
+ * Runs the Vite build, then boots the compiled SSR server locally
+ * to generate a perfect static index.html. This prevents hydration
+ * mismatch (black screen) when Vercel serves it as a SPA.
  */
 
-import { readdir, writeFile } from "fs/promises";
+import { writeFile } from "fs/promises";
 import { execSync } from "child_process";
+import { pathToFileURL } from "url";
+import path from "path";
 
-// 1. Run the normal Vite build
-console.log("⚙️  Running Vite build...");
-execSync("npm run build", { stdio: "inherit" });
+async function generateStaticHtml() {
+  console.log("⚙️  Running normal build...");
+  execSync("npm run build", { stdio: "inherit" });
 
-// 2. Scan dist/client/assets for CSS and JS files
-console.log("📂  Scanning dist/client/assets...");
-const assets = await readdir("dist/client/assets");
+  console.log("🚀  Booting SSR server to generate static HTML...");
+  
+  // Import the compiled server
+  const serverPath = path.resolve("dist/server/server.js");
+  const serverModule = await import(pathToFileURL(serverPath).href);
+  const server = serverModule.default;
+  
+  // Create a mock Request
+  const req = new Request("http://localhost/");
+  
+  // Call the Cloudflare Worker fetch handler
+  const res = await server.fetch(req, {}, {});
+  
+  if (res.status !== 200) {
+    throw new Error(`Failed to render index: ${res.status}`);
+  }
+  
+  const html = await res.text();
+  
+  await writeFile("dist/client/index.html", html, "utf-8");
+  console.log("✅  Generated dist/client/index.html successfully!");
+  console.log("🎉  Ready for Vercel static deployment.");
+}
 
-const cssFiles = assets.filter((f) => f.endsWith(".css"));
-
-// Entry JS priority:
-//   1. proxy-*.js  → vinxi client-side rendering proxy
-//   2. swords-*.js → sometimes the bootstrap entry
-//   3. smallest .js file as fallback
-const allJs = assets.filter((f) => f.endsWith(".js"));
-const entryJs =
-  allJs.find((f) => f.startsWith("proxy")) ||
-  allJs.find((f) => f.startsWith("swords")) ||
-  allJs.sort((a, b) => a.length - b.length)[0];
-
-console.log("🎨  CSS files:", cssFiles);
-console.log("🚀  Entry JS :", entryJs);
-
-// 3. Build the HTML
-const cssLinks = cssFiles
-  .map((f) => `    <link rel="stylesheet" href="/assets/${f}">`)
-  .join("\n");
-
-const html = `<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Game Joki Hub</title>
-    <meta name="description" content="Game Joki Hub is a platform connecting gamers with skilled players for in-game assistance.">
-${cssLinks}
-  </head>
-  <body>
-    <script type="module" src="/assets/${entryJs}"></script>
-  </body>
-</html>`;
-
-await writeFile("dist/client/index.html", html, "utf-8");
-console.log("✅  Created dist/client/index.html");
-console.log("🎉  Vercel build complete! Output: dist/client/");
+generateStaticHtml().catch(console.error);
