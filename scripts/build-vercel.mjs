@@ -13,7 +13,7 @@ import path from "path";
 
 async function generateStaticHtml() {
   console.log("⚙️  Running normal build...");
-  execSync("npm run build", { stdio: "inherit" });
+  execSync("npm run build:vite", { stdio: "inherit" });
 
   console.log("🚀  Booting SSR server to generate static HTML...");
   
@@ -39,4 +39,8 @@ async function generateStaticHtml() {
   console.log("🎉  Ready for Vercel static deployment.");
 }
 
-generateStaticHtml().catch(console.error);
+generateStaticHtml().catch((err) => {
+  console.error("❌ Build failed:");
+  console.error(err);
+  process.exit(1);
+});

@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
-    "build": "vite build",
+    "build:vite": "vite build",
     "build:dev": "vite build --mode development",
-    "build:vercel": "node scripts/build-vercel.mjs",
+    "build": "node scripts/build-vercel.mjs",
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write ."
