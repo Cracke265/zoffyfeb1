@@ -55,7 +55,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const formatPrice = useCallback(
     (idr: number): string => {
       if (lang === "id") {
-        return "Rp " + idr.toLocaleString("id-ID");
+        if (idr >= 1_000_000)
+          return (idr / 1_000_000).toFixed(idr % 1_000_000 === 0 ? 0 : 1) + "jt";
+        if (idr >= 1_000) return (idr / 1_000).toFixed(0) + "k";
+        return String(idr);
       }
       return idrToUsd(idr);
     },
@@ -66,8 +69,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     (idr: number): string => {
       if (lang === "id") {
         if (idr >= 1_000_000)
-          return (idr / 1_000_000).toFixed(idr % 1_000_000 === 0 ? 0 : 1) + "JT";
-        if (idr >= 1_000) return (idr / 1_000).toFixed(0) + "K";
+          return (idr / 1_000_000).toFixed(idr % 1_000_000 === 0 ? 0 : 1) + "jt";
+        if (idr >= 1_000) return (idr / 1_000).toFixed(0) + "k";
         return String(idr);
       }
       return idrToUsd(idr);
