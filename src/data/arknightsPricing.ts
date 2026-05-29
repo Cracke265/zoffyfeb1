@@ -6,7 +6,7 @@ export type RegionKey =
   | "Tantangan & Rawatan";
 
 export type Category =
-  | "Explore"
+  | "All"
   | "Quest"
   | "Pabrik & Tambang"
   | "Etchspace"
@@ -22,7 +22,7 @@ export const allRegions: RegionKey[] = [
 ];
 
 export const allCategories: Category[] = [
-  "Explore",
+  "All",
   "Quest",
   "Pabrik & Tambang",
   "Etchspace",
@@ -46,7 +46,7 @@ export const arknightsPricingData: PricingBlock[] = [
   // --- VALLEY IV ---
   {
     region: "Valley IV",
-    category: "Explore",
+    category: "All",
     items: [
       { name: "The Hub - Chest", price: 30000, group: "The Hub" },
       { name: "The Hub - Aurylene", price: 20000, group: "The Hub" },
@@ -76,7 +76,7 @@ export const arknightsPricingData: PricingBlock[] = [
   // --- WULING ---
   {
     region: "Wuling",
-    category: "Explore",
+    category: "All",
     items: [
       { name: "Kota Wuling - Chest", price: 60000, group: "Kota Wuling" },
       { name: "Kota Wuling - Aurylene", price: 25000, group: "Kota Wuling" },
@@ -122,15 +122,15 @@ export const arknightsPricingData: PricingBlock[] = [
     items: [
       { name: "Zone 1 - 3 (Quest Buka Zona)", price: 25000, group: "Zone 1 - 3" },
       { name: "Zone 1 - 3 (Chest)", price: 20000, group: "Zone 1 - 3" },
-      { name: "Zone 1 - 3 (Komisi)", price: 5000, group: "Zone 1 - 3" },
+      { name: "Zone 1 - 3 (Komisi)", price: 20000, group: "Zone 1 - 3" },
       
       { name: "Zone 4 (Quest Buka Zona)", price: 15000, group: "Zone 4" },
       { name: "Zone 4 (Chest)", price: 10000, group: "Zone 4" },
-      { name: "Zone 4 (Komisi)", price: 6000, group: "Zone 4" },
+      { name: "Zone 4 (Komisi)", price: 20000, group: "Zone 4" },
       
       { name: "Zone 5 - 6 (Quest Buka Zona)", price: 20000, group: "Zone 5 - 6" },
       { name: "Zone 5 - 6 (Chest)", price: 20000, group: "Zone 5 - 6" },
-      { name: "Zone 5 - 6 (Komisi)", price: 6000, group: "Zone 5 - 6" },
+      { name: "Zone 5 - 6 (Komisi)", price: 20000, group: "Zone 5 - 6" },
     ],
   },
 

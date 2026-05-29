@@ -3,7 +3,7 @@ import { ArrowLeft, MessageCircle, Star } from "lucide-react";
 import { ArknightsPricelistSection } from "@/components/ArknightsPricelistSection";
 import { useLang } from "@/context/LanguageContext";
 
-const img = "/assets/arknights_chibi.jpg";
+const img = "/assets/arknights.jpeg";
 
 function ArknightsPage() {
   const { t } = useLang();
@@ -38,13 +38,12 @@ function ArknightsPage() {
                 Layanan joki Arknights Endfield lengkap — explore wilayah Valley IV & Wuling, quest, farming aurylene, setup infrastruktur pabrik, hingga rawat akun harian.
               </p>
             </div>
-            <div className="relative w-48 h-48 md:w-64 md:h-64 mx-auto">
-              <div className="absolute inset-0 bg-cyan-500/20 blur-3xl rounded-full" />
-              <div className="absolute inset-0 rounded-full border-2 border-cyan-500/40 shadow-[0_0_30px_rgba(8,145,178,0.3)]" />
+            <div className="relative w-full max-w-xs md:max-w-md mx-auto">
+              <div className="absolute inset-0 bg-cyan-500/20 blur-3xl rounded-2xl" />
               <img
                 src={img}
                 alt="Arknights Endfield"
-                className="absolute inset-3 rounded-full object-cover w-[calc(100%-1.5rem)] h-[calc(100%-1.5rem)]"
+                className="relative rounded-2xl object-contain w-full h-auto border-2 border-cyan-500/40 shadow-[0_0_30px_rgba(8,145,178,0.3)]"
               />
             </div>
           </div>

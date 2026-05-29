@@ -1,8 +1,11 @@
 export type Category =
   | "Explore"
+  | "Explore Enkanomiya"
   | "Area Khusus"
   | "Quest"
+  | "Quest Enkanomiya"
   | "Quest Prasyarat"
+  | "Quest Prasyarat Enkanomiya"
   | "Quest Prasyarat Aranyaka"
   | "Quest Prasyarat Sumeru Gurun"
   | "Rawat Akun"
@@ -17,7 +20,6 @@ export type RegionKey =
   | "Mondstadt"
   | "Liyue"
   | "Inazuma"
-  | "Enkanomiya"
   | "Sumeru Desert"
   | "Fontaine"
   | "Natlan"
@@ -62,13 +64,6 @@ export const regionTheme: Record<
     ring: "ring-fuchsia-400/40",
     glow: "shadow-[0_0_40px_-5px_rgba(217,70,239,0.6)]",
     label: "text-fuchsia-200",
-  },
-  Enkanomiya: {
-    from: "from-indigo-400/30",
-    to: "to-slate-900/10",
-    ring: "ring-indigo-400/40",
-    glow: "shadow-[0_0_40px_-5px_rgba(129,140,248,0.55)]",
-    label: "text-indigo-200",
   },
   "Sumeru Desert": {
     from: "from-emerald-400/30",
@@ -118,7 +113,6 @@ export const allRegions: RegionKey[] = [
   "Mondstadt",
   "Liyue",
   "Inazuma",
-  "Enkanomiya",
   "Sumeru Desert",
   "Fontaine",
   "Natlan",
@@ -130,9 +124,12 @@ export const allRegions: RegionKey[] = [
 // All possible categories, used for modal rendering
 export const allCategories: Category[] = [
   "Explore",
+  "Explore Enkanomiya",
   "Area Khusus",
   "Quest",
+  "Quest Enkanomiya",
   "Quest Prasyarat",
+  "Quest Prasyarat Enkanomiya",
   "Quest Prasyarat Aranyaka",
   "Quest Prasyarat Sumeru Gurun",
   "Rawat Akun",
@@ -147,9 +144,14 @@ export const allCategories: Category[] = [
 // Main horizontal tabs shown on the homepage
 export const mainCategories: Category[] = [
   "Explore",
+  "Explore Enkanomiya",
   "Area Khusus",
   "Quest",
+  "Quest Enkanomiya",
   "Quest Prasyarat",
+  "Quest Prasyarat Enkanomiya",
+  "Quest Prasyarat Aranyaka",
+  "Quest Prasyarat Sumeru Gurun",
 ];
 
 // Data — keep prices in IDR (number)
@@ -261,10 +263,10 @@ export const pricingData: RegionServiceBlock[] = [
     ],
   },
 
-  // ───── ENKANOMIYA ─────
+  // ───── ENKANOMIYA (sub Inazuma) ─────
   {
-    region: "Enkanomiya",
-    category: "Quest",
+    region: "Inazuma",
+    category: "Quest Enkanomiya",
     items: [
       { name: "Buka Enkanomiya — Dasar Pemandian Bulan", price: 15000, group: "Quest Buka Area Enkanomiya" },
       { name: "Buka Enkanomiya — Pintu Masuk Ke Tokoyo", price: 15000, group: "Quest Buka Area Enkanomiya" },
@@ -276,15 +278,15 @@ export const pricingData: RegionServiceBlock[] = [
     ],
   },
   {
-    region: "Enkanomiya",
-    category: "Quest Prasyarat",
+    region: "Inazuma",
+    category: "Quest Prasyarat Enkanomiya",
     items: [
       { name: "Rahasia Erobos (Tantangan Yachimatahiko, Yachimatahime, Kunado, Tija Ujian)", price: 15000 },
     ],
   },
   {
-    region: "Enkanomiya",
-    category: "Explore",
+    region: "Inazuma",
+    category: "Explore Enkanomiya",
     items: [
       { name: "Explore Chest + 59 Sigil", price: 75000 },
       { name: "59 Sigil Saja", price: 30000 },
@@ -362,14 +364,14 @@ export const pricingData: RegionServiceBlock[] = [
       { name: "Erinnyes Forest", price: 25000 },
       { name: "Morte Region", price: 40000 },
       { name: "All Hydroculus", price: 200000 },
-      { name: "Nostoi Region & Sea Of Bygone Eras — Exploration", price: 60000, group: "Area Khusus (Nostoi & Sea Of Bygone Eras)" },
     ],
   },
   {
     region: "Fontaine",
     category: "Area Khusus",
     items: [
-      { name: "Nostoi Region & Sea Of Bygone Eras — Quest", price: 40000, group: "Area Khusus (Nostoi & Sea Of Bygone Eras)" },
+      { name: "Nostoi Region & Sea Of Bygone Eras — Exploration", price: 60000, group: "Area Khusus Exploration" },
+      { name: "Nostoi Region & Sea Of Bygone Eras — Quest", price: 40000, group: "Area Khusus Quest" },
     ],
   },
   {
@@ -384,18 +386,18 @@ export const pricingData: RegionServiceBlock[] = [
     region: "Fontaine",
     category: "Quest Prasyarat",
     items: [
-      { name: "Beryl — Warna Warna Kuno", price: 55000, group: "Quest Prasyarat Fontaine 01" },
-      { name: "Beryl — Kitab Kebenaran Samudera & Berkas Misterius", price: 20000, group: "Quest Prasyarat Fontaine 01" },
-      { name: "Court of Fontaine — Petualangan Narzissenkreuz", price: 20000, group: "Quest Prasyarat Fontaine 01" },
-      { name: "Court of Fontaine — Kerajaan Dalam Cermin (Kisah Ann)", price: 20000, group: "Quest Prasyarat Fontaine 01" },
-      { name: "Court of Fontaine — \"Jika Dia Sudah Tak Lagi Memimpikanmu...\" (Kisah Mary-Ann)", price: 20000, group: "Quest Prasyarat Fontaine 01" },
-      { name: "Court of Fontaine — Jejak Pasang Laut", price: 25000, group: "Quest Prasyarat Fontaine 01" },
-      { name: "Liffey — Komedi Yang Belum Selesai", price: 75000, group: "Quest Prasyarat Fontaine 01" },
-      { name: "Research Inst. — Kisah Institusi Penelitian Fontaine", price: 45000, group: "Quest Prasyarat Fontaine 01" },
-      { name: "Research Inst. — Menuju Keganjilan", price: 25000, group: "Quest Prasyarat Fontaine 01" },
-      { name: "Research Inst. — Cahaya Pengkhianatan Dasar Laut", price: 20000, group: "Quest Prasyarat Fontaine 01" },
-      { name: "Erinnyes Forest — Peri Dari Erinnyes (Jalan Hutan Kabut / Dedalu Terisak / Mata Air / Kedalaman)", price: 25000, group: "Quest Prasyarat Fontaine 02" },
-      { name: "Morte — Jejak Narcissus (Pencarian Di Lautan Alga / Kebangkitan / Bangkit Dari Mimpi / Perahu Sungai)", price: 75000, group: "Quest Prasyarat Fontaine 02" },
+      { name: "Beryl — Warna Warna Kuno", price: 55000, group: "Beryl" },
+      { name: "Beryl — Kitab Kebenaran Samudera & Berkas Misterius", price: 20000, group: "Beryl" },
+      { name: "Court of Fontaine — Petualangan Narzissenkreuz", price: 20000, group: "Court of Fontaine" },
+      { name: "Court of Fontaine — Kerajaan Dalam Cermin (Kisah Ann)", price: 20000, group: "Court of Fontaine" },
+      { name: "Court of Fontaine — \"Jika Dia Sudah Tak Lagi Memimpikanmu...\" (Kisah Mary-Ann)", price: 20000, group: "Court of Fontaine" },
+      { name: "Court of Fontaine — Jejak Pasang Laut", price: 25000, group: "Court of Fontaine" },
+      { name: "Liffey — Komedi Yang Belum Selesai", price: 75000, group: "Liffey" },
+      { name: "Research Inst. — Kisah Institusi Penelitian Fontaine", price: 45000, group: "Research Inst" },
+      { name: "Research Inst. — Menuju Keganjilan", price: 25000, group: "Research Inst" },
+      { name: "Research Inst. — Cahaya Pengkhianatan Dasar Laut", price: 20000, group: "Research Inst" },
+      { name: "Erinnyes Forest — Peri Dari Erinnyes (Jalan Hutan Kabut / Dedalu Terisak / Mata Air / Kedalaman)", price: 25000, group: "Erinnyes Forest" },
+      { name: "Morte — Jejak Narcissus (Pencarian Di Lautan Alga / Kebangkitan / Bangkit Dari Mimpi / Perahu Sungai)", price: 75000, group: "Morte" },
     ],
   },
 
@@ -414,36 +416,36 @@ export const pricingData: RegionServiceBlock[] = [
       { name: "Atocpan", price: 45000 },
       { name: "Easybreeze Holiday Resort", price: 90000 },
       { name: "All Pyroculus", price: 225000 },
-      { name: "Ancient Sacred Mountain — Explore Chest", price: 45000, group: "Ancient Sacred Mountain" },
     ],
   },
   {
     region: "Natlan",
     category: "Area Khusus",
     items: [
-      { name: "Ancient Sacred Mountain — Jalan Menuju Puncak Berkobar (Lompatan Nahuatzin)", price: 10000, group: "Ancient Sacred Mountain" },
-      { name: "Ancient Sacred Mountain — Penyair Kota Yang Hancur", price: 45000, group: "Ancient Sacred Mountain" },
-      { name: "Ancient Sacred Mountain — Akhir Dari Kembalinya Bara Api", price: 10000, group: "Ancient Sacred Mountain" },
+      { name: "Ancient Sacred Mountain — Explore Chest", price: 45000, group: "Ancient Sacred Mountain Explore Chest" },
+      { name: "Ancient Sacred Mountain — Jalan Menuju Puncak Berkobar (Lompatan Nahuatzin)", price: 10000, group: "Ancient Sacred Mountain Quest" },
+      { name: "Ancient Sacred Mountain — Penyair Kota Yang Hancur", price: 45000, group: "Ancient Sacred Mountain Quest" },
+      { name: "Ancient Sacred Mountain — Akhir Dari Kembalinya Bara Api", price: 10000, group: "Ancient Sacred Mountain Quest" },
     ],
   },
   {
     region: "Natlan",
     category: "Quest Prasyarat",
     items: [
-      { name: "Taquemecan — Bayangan Gunung", price: 35000, group: "Quest Prasyarat Natlan 01" },
-      { name: "Taquemecan — Memancing Masalah", price: 10000, group: "Quest Prasyarat Natlan 01" },
-      { name: "Coatepec — Kembalikan Malam Pada Sang Malam", price: 30000, group: "Quest Prasyarat Natlan 01" },
-      { name: "Toyac — Kisah Mengambil Mimpi Di Tengah Api", price: 25000, group: "Quest Prasyarat Natlan 01" },
-      { name: "Toyac — Antara Janji Dan Lupa", price: 35000, group: "Quest Prasyarat Natlan 01" },
-      { name: "Tezcatepetonco — Misteri Bulu Mengapung Di Tepi Pantai", price: 20000, group: "Quest Prasyarat Natlan 01" },
-      { name: "Ochkanatlan — Kota Yang Terkubur Oleh Abu", price: 20000, group: "Quest Prasyarat Natlan 01" },
-      { name: "Ochkanatlan — Mimpi Akan Langit Yang Jatuh", price: 25000, group: "Quest Prasyarat Natlan 01" },
-      { name: "Ochkanatlan — Buka Jantungmu Untukku", price: 20000, group: "Quest Prasyarat Natlan 01" },
-      { name: "Atocpan — Penyelidikan Reruntuhan Kuno / Batu Hancur & Sejarahnya", price: 5000, group: "Quest Prasyarat Natlan 02" },
-      { name: "Easybreeze — Menuju Liburan Yang Menyenangkan", price: 10000, group: "Quest Prasyarat Natlan 02" },
-      { name: "Easybreeze — Dunia Adalah Kanvasmu (Tebing Warna / Tebing Guiztli / Teluk Gelombang)", price: 40000, group: "Quest Prasyarat Natlan 02" },
-      { name: "Easybreeze — Kejutan Yang Menanti Kita Semua", price: 20000, group: "Quest Prasyarat Natlan 02" },
-      { name: "Easybreeze — Penutupan Malam Musim Yang Penuh Warna", price: 10000, group: "Quest Prasyarat Natlan 02" },
+      { name: "Taquemecan — Bayangan Gunung", price: 35000, group: "Taquemecan" },
+      { name: "Taquemecan — Memancing Masalah", price: 10000, group: "Taquemecan" },
+      { name: "Coatepec — Kembalikan Malam Pada Sang Malam", price: 30000, group: "Coatepec" },
+      { name: "Toyac — Kisah Mengambil Mimpi Di Tengah Api", price: 25000, group: "Toyac" },
+      { name: "Toyac — Antara Janji Dan Lupa", price: 35000, group: "Toyac" },
+      { name: "Tezcatepetonco — Misteri Bulu Mengapung Di Tepi Pantai", price: 20000, group: "Tezcatepetonco" },
+      { name: "Ochkanatlan — Kota Yang Terkubur Oleh Abu", price: 20000, group: "Ochkanatlan" },
+      { name: "Ochkanatlan — Mimpi Akan Langit Yang Jatuh", price: 25000, group: "Ochkanatlan" },
+      { name: "Ochkanatlan — Buka Jantungmu Untukku", price: 20000, group: "Ochkanatlan" },
+      { name: "Atocpan — Penyelidikan Reruntuhan Kuno / Batu Hancur & Sejarahnya", price: 5000, group: "Atocpan" },
+      { name: "Easybreeze — Menuju Liburan Yang Menyenangkan", price: 10000, group: "Easybreeze" },
+      { name: "Easybreeze — Dunia Adalah Kanvasmu (Tebing Warna / Tebing Guiztli / Teluk Gelombang)", price: 40000, group: "Easybreeze" },
+      { name: "Easybreeze — Kejutan Yang Menanti Kita Semua", price: 20000, group: "Easybreeze" },
+      { name: "Easybreeze — Penutupan Malam Musim Yang Penuh Warna", price: 10000, group: "Easybreeze" },
     ],
   },
 
@@ -493,16 +495,6 @@ export const pricingData: RegionServiceBlock[] = [
   },
 
   // ───── JOKI LAINNYA 01 CARD ─────
-  {
-    region: "Joki Lainnya 01",
-    category: "Explore",
-    items: [
-      { name: "Rawat Akun (Daily / Weekly / Monthly)", price: 3000 },
-      { name: "Ascend Character (Level 1 s/d 90)", price: 5000 },
-      { name: "Talent Service (Level 1 s/d 10)", price: 2000 },
-      { name: "Ascend Weapon (Level 1 s/d 90)", price: 3000 },
-    ],
-  },
   {
     region: "Joki Lainnya 01",
     category: "Rawat Akun",
@@ -556,15 +548,6 @@ export const pricingData: RegionServiceBlock[] = [
   },
 
   // ───── JOKI LAINNYA 02 CARD ─────
-  {
-    region: "Joki Lainnya 02",
-    category: "Explore",
-    items: [
-      { name: "Joki Senjata (Mancing — The Catch / End of the Line / Fleuve Cendre)", price: 17000 },
-      { name: "Joki Unlock Teleport (All Regions)", price: 10000 },
-      { name: "Joki Spiral Abyss (Lantai 1 s/d 12)", price: 5000 },
-    ],
-  },
   {
     region: "Joki Lainnya 02",
     category: "Joki Mancing",

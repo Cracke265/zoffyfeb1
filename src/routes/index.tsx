@@ -20,9 +20,9 @@ const SOCIALS = [
   { name: "YouTube", url: "#", icon: YoutubeIcon, color: "hover:text-red-500 hover:border-red-500/50 hover:bg-red-500/10" },
 ];
 
-const heroChar = "/assets/hero_banner.jpg";
-const genshinImg = "/assets/genshin_chibi.jpg";
-const arknightsImg = "/assets/arknights_chibi.jpg";
+const heroChar = "/assets/background.jpeg";
+const genshinImg = "/assets/genshin.jpeg";
+const arknightsImg = "/assets/arknights.jpeg";
 
 export const Route = createFileRoute("/")({
   head: () => ({

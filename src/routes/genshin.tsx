@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, MessageCircle, Star } from "lucide-react";
 import { GenshinPricelistSection } from "@/components/GenshinPricelistSection";
 
-const img = "/assets/genshin_chibi.jpg";
+const img = "/assets/genshin.jpeg";
 
 function GenshinPage() {
   return (
@@ -37,13 +37,12 @@ function GenshinPage() {
                 service, spiral abyss, hingga weapon service. Pilot pro berpengalaman.
               </p>
             </div>
-            <div className="relative w-48 h-48 md:w-64 md:h-64 mx-auto">
-              <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full" />
-              <div className="absolute inset-0 rounded-full border-2 border-primary/40 shadow-glow" />
+            <div className="relative w-full max-w-xs md:max-w-md mx-auto">
+              <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-2xl" />
               <img
                 src={img}
                 alt="Genshin Impact"
-                className="absolute inset-3 rounded-full object-cover w-[calc(100%-1.5rem)] h-[calc(100%-1.5rem)]"
+                className="relative rounded-2xl object-contain w-full h-auto border-2 border-primary/40 shadow-glow"
               />
             </div>
           </div>

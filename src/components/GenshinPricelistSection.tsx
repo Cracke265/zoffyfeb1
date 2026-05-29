@@ -44,9 +44,12 @@ import { OrderFormModal } from "@/components/OrderFormModal";
 
 const categoryIcons: Record<Category, React.ComponentType<{ className?: string }>> = {
   Explore: Compass,
+  "Explore Enkanomiya": Compass,
   "Area Khusus": MapPin,
   Quest: ScrollText,
+  "Quest Enkanomiya": ScrollText,
   "Quest Prasyarat": Sparkles,
+  "Quest Prasyarat Enkanomiya": Sparkles,
   "Quest Prasyarat Aranyaka": TreePine,
   "Quest Prasyarat Sumeru Gurun": Shield,
   "Rawat Akun": UserCog,
@@ -57,6 +60,33 @@ const categoryIcons: Record<Category, React.ComponentType<{ className?: string }
   "Unlock Teleport": Navigation,
   "Spiral Abyss": Swords,
 };
+
+// USD pricing table: base price brackets + $2 tax
+function calculateUsd(idr: number): number {
+  let base = 0;
+  if (idr >= 215000) base = 13;
+  else if (idr >= 197000) base = 11;
+  else if (idr >= 179000) base = 10;
+  else if (idr >= 161000) base = 9;
+  else if (idr >= 144000) base = 8;
+  else if (idr >= 126000) base = 7;
+  else if (idr >= 90000) base = 6;
+  else if (idr >= 72000) base = 5;
+  else if (idr >= 55000) base = 4;
+  else if (idr >= 36000) base = 3;
+  else if (idr >= 18000) base = 2;
+  else if (idr >= 1000) base = 1;
+  else return 0;
+  return base + 2;
+}
+
+function getDisplayPrice(idr: number, lang: string, idrFormatter: (n: number) => string): string {
+  if (lang === "en") {
+    const usd = calculateUsd(idr);
+    return usd === 0 ? "—" : `$${usd}`;
+  }
+  return idrFormatter(idr);
+}
 
 type CartItem = { key: string; name: string; price: number; qty: number };
 
@@ -197,6 +227,9 @@ export function GenshinPricelistSection({ waNumber = "6281247195240" }: { waNumb
 
   const cartEntries = Object.values(cart);
   const cartTotal = cartEntries.reduce((s, e) => s + e.price * e.qty, 0);
+  const cartTotalDisplay = lang === "en" 
+    ? `$${cartEntries.reduce((s, e) => s + calculateUsd(e.price) * e.qty, 0)}`
+    : formatPrice(cartTotal);
   const cartQty = cartEntries.reduce((s, e) => s + e.qty, 0);
 
   // Calculator estimate
@@ -286,7 +319,7 @@ export function GenshinPricelistSection({ waNumber = "6281247195240" }: { waNumb
                               <div className="text-sm font-medium truncate">{r.name}</div>
                               <div className="text-xs text-zinc-500 mt-0.5">{r.region} · {r.category}</div>
                             </div>
-                            <span className="font-tech text-sm text-red-400 tabular-nums">{shortPrice(r.price)}</span>
+                            <span className="font-tech text-sm text-red-400 tabular-nums">{getDisplayPrice(r.price, lang, shortPrice)}</span>
                           </button>
                         </li>
                       ))}
@@ -366,9 +399,6 @@ export function GenshinPricelistSection({ waNumber = "6281247195240" }: { waNumb
                         <div className={`w-14 h-14 rounded-full border bg-black/40 flex items-center justify-center ${meta.shadow}`}>
                           <meta.icon className={`w-6 h-6 ${meta.iconColor}`} />
                         </div>
-                        <div className="rounded-full border border-white/5 bg-white/[0.02] px-4 py-1.5 text-[10px] font-tech uppercase tracking-widest text-zinc-400">
-                          {t("gpl.card.from")} {shortPrice(min)}
-                        </div>
                       </div>
                       <div className="mt-8 mb-6">
                         <div className="text-[10px] font-tech tracking-[0.2em] uppercase text-zinc-400 mb-2">{meta.subtitle}</div>
@@ -432,7 +462,7 @@ export function GenshinPricelistSection({ waNumber = "6281247195240" }: { waNumb
                       initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 4 }}
                       transition={{ duration: 0.2 }} className="font-display text-2xl text-red-300 tabular-nums"
                     >
-                      {calcEstimate !== null ? formatPrice(calcEstimate) : "—"}
+                      {calcEstimate !== null ? getDisplayPrice(calcEstimate, lang, formatPrice) : "—"}
                     </motion.span>
                   </AnimatePresence>
                 </div>
@@ -527,10 +557,10 @@ export function GenshinPricelistSection({ waNumber = "6281247195240" }: { waNumb
                         <div className="flex-1 min-w-0">
                           <div className="text-sm font-medium truncate">{e.name}</div>
                           <AnimatePresence mode="wait">
-                            <motion.div key={lang + e.key} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}
-                              className="text-xs font-tech text-red-400 tabular-nums">
-                              {formatPrice(e.price)} × {e.qty}
-                            </motion.div>
+                              <motion.div key={lang + e.key} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}
+                                className="text-xs font-tech text-red-400 tabular-nums">
+                                {getDisplayPrice(e.price, lang, formatPrice)} × {e.qty}
+                              </motion.div>
                           </AnimatePresence>
                         </div>
                         <div className="flex items-center gap-1 rounded-lg border border-white/10">
@@ -556,7 +586,7 @@ export function GenshinPricelistSection({ waNumber = "6281247195240" }: { waNumb
                     <motion.span key={lang + cartTotal}
                       initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
                       transition={{ duration: 0.2 }} className="font-display text-3xl text-red-300 tabular-nums">
-                      {formatPrice(cartTotal)}
+                      {cartTotalDisplay}
                     </motion.span>
                   </AnimatePresence>
                 </div>
@@ -693,7 +723,7 @@ function RegionModal({
                                 <motion.span key={lang + it.name}
                                   initial={{ opacity: 0, y: -3 }} animate={{ opacity: 1, y: 0 }}
                                   exit={{ opacity: 0, y: 3 }} transition={{ duration: 0.15 }} className="inline-block">
-                                  {formatPrice(it.price)}
+                                  {getDisplayPrice(it.price, lang, formatPrice)}
                                 </motion.span>
                               </AnimatePresence>
                             </td>

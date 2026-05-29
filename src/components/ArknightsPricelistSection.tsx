@@ -19,7 +19,9 @@ import {
   ShieldAlert,
   Wrench,
   CheckCircle2,
+  Check,
 } from "lucide-react";
+
 import {
   arknightsPricingData as pricingData,
   regionTheme,
@@ -32,13 +34,40 @@ import { useLang } from "@/context/LanguageContext";
 import { OrderFormModal } from "@/components/OrderFormModal";
 
 const categoryIcons: Record<Category, React.ComponentType<{ className?: string }>> = {
-  Explore: Compass,
+  All: Compass,
   Quest: ScrollText,
   "Pabrik & Tambang": Factory,
   Etchspace: Hexagon,
   Tantangan: ShieldAlert,
   "Rawat Akun": Wrench,
 };
+
+// USD pricing table: base price brackets + $2 tax
+function calculateUsd(idr: number): number {
+  let base = 0;
+  if (idr >= 215000) base = 13;
+  else if (idr >= 197000) base = 11;
+  else if (idr >= 179000) base = 10;
+  else if (idr >= 161000) base = 9;
+  else if (idr >= 144000) base = 8;
+  else if (idr >= 126000) base = 7;
+  else if (idr >= 90000) base = 6;
+  else if (idr >= 72000) base = 5;
+  else if (idr >= 55000) base = 4;
+  else if (idr >= 36000) base = 3;
+  else if (idr >= 18000) base = 2;
+  else if (idr >= 1000) base = 1;
+  else return 0;
+  return base + 2;
+}
+
+function getDisplayPrice(idr: number, lang: string, idrFormatter: (n: number) => string): string {
+  if (lang === "en") {
+    const usd = calculateUsd(idr);
+    return usd === 0 ? "—" : `$${usd}`;
+  }
+  return idrFormatter(idr);
+}
 
 type CartItem = { key: string; name: string; price: number; qty: number };
 
@@ -93,7 +122,7 @@ function Particles() {
 export function ArknightsPricelistSection({ waNumber = "6281247195240" }: { waNumber?: string }) {
   const { t, formatPrice, shortPrice, lang } = useLang();
 
-  const [category, setCategory] = useState<Category>("Explore");
+  const [category, setCategory] = useState<Category>("All");
   const [search, setSearch] = useState("");
   const [regionFilter, setRegionFilter] = useState<RegionKey | "all">("all");
   const [openRegion, setOpenRegion] = useState<RegionKey | null>(null);
@@ -119,6 +148,7 @@ export function ArknightsPricelistSection({ waNumber = "6281247195240" }: { waNu
 
   // Regions visible in current category
   const regionsInCategory = useMemo(() => {
+    if (category === "All") return allRegions;
     const set = new Set<RegionKey>();
     pricingData
       .filter((b) => b.category === category)
@@ -174,8 +204,18 @@ export function ArknightsPricelistSection({ waNumber = "6281247195240" }: { waNu
       }
       return { ...c, [key]: { ...cur, qty } };
     }), []);
+
+  const removeFromCart = useCallback((key: string) => {
+    setCart((c) => {
+      const { [key]: _, ...rest } = c;
+      return rest;
+    });
+  }, []);
   const cartEntries = Object.values(cart);
   const cartTotal = cartEntries.reduce((s, e) => s + e.price * e.qty, 0);
+  const cartTotalDisplay = lang === "en" 
+    ? `$${cartEntries.reduce((s, e) => s + calculateUsd(e.price) * e.qty, 0)}`
+    : formatPrice(cartTotal);
   const cartQty = cartEntries.reduce((s, e) => s + e.qty, 0);
 
   // Calculator estimate
@@ -292,7 +332,7 @@ export function ArknightsPricelistSection({ waNumber = "6281247195240" }: { waNu
                               </div>
                             </div>
                             <span className="font-tech text-sm text-cyan-400 tabular-nums">
-                              {shortPrice(r.price)}
+                              {getDisplayPrice(r.price, lang, shortPrice)}
                             </span>
                           </button>
                         </li>
@@ -407,18 +447,6 @@ export function ArknightsPricelistSection({ waNumber = "6281247195240" }: { waNu
                           <span className="text-white font-bold tabular-nums">{items.length}</span>{" "}
                           {t("gpl.card.services")}
                         </span>
-                        <AnimatePresence mode="wait">
-                          <motion.span
-                            key={lang + String(min)}
-                            initial={{ opacity: 0, y: -4 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 4 }}
-                            transition={{ duration: 0.2 }}
-                            className="font-tech text-cyan-400"
-                          >
-                            {t("gpl.card.from")} {shortPrice(min)}
-                          </motion.span>
-                        </AnimatePresence>
                       </div>
                       <div className="flex items-center justify-between rounded-lg border border-white/10 bg-white/[0.02] px-3 py-2 group-hover:border-cyan-500/50 group-hover:bg-cyan-500/5 transition">
                         <span className="text-xs font-tech tracking-widest uppercase">
@@ -521,7 +549,7 @@ export function ArknightsPricelistSection({ waNumber = "6281247195240" }: { waNu
                       transition={{ duration: 0.2 }}
                       className="font-display text-2xl text-cyan-300 tabular-nums"
                     >
-                      {calcEstimate !== null ? formatPrice(calcEstimate) : "—"}
+                      {calcEstimate !== null ? getDisplayPrice(calcEstimate, lang, formatPrice) : "—"}
                     </motion.span>
                   </AnimatePresence>
                 </div>
@@ -538,12 +566,12 @@ export function ArknightsPricelistSection({ waNumber = "6281247195240" }: { waNu
             region={openRegion}
             category={category}
             onClose={() => setOpenRegion(null)}
-            onAdd={(name, price) => {
-              const key = `${openRegion}-${category}-${name}`;
+            onAdd={(name, price, itemCategory) => {
+              const key = `${openRegion}-${itemCategory}-${name}`;
               addToCart(key, `${name} (${openRegion})`, price);
             }}
             cart={cart}
-            onSub={(name) => subFromCart(`${openRegion}-${category}-${name}`)}
+            onRemove={(name, itemCategory) => removeFromCart(`${openRegion}-${itemCategory}-${name}`)}
             allCategoriesForRegion={allCategories}
             getItems={getItems}
             onOrderNow={() => setFormOpen(true)}
@@ -641,25 +669,17 @@ export function ArknightsPricelistSection({ waNumber = "6281247195240" }: { waNu
                               transition={{ duration: 0.15 }}
                               className="text-xs font-tech text-cyan-400 tabular-nums"
                             >
-                              {formatPrice(e.price)} × {e.qty}
+                              {getDisplayPrice(e.price, lang, formatPrice)}
                             </motion.div>
                           </AnimatePresence>
                         </div>
-                        <div className="flex items-center gap-1 rounded-lg border border-white/10">
-                          <button
-                            onClick={() => subFromCart(e.key)}
-                            className="w-7 h-7 flex items-center justify-center hover:bg-cyan-500/20"
-                          >
-                            <Minus className="w-3 h-3" />
-                          </button>
-                          <span className="w-6 text-center text-sm font-bold">{e.qty}</span>
-                          <button
-                            onClick={() => addToCart(e.key, e.name, e.price)}
-                            className="w-7 h-7 flex items-center justify-center hover:bg-cyan-500/20"
-                          >
-                            <Plus className="w-3 h-3" />
-                          </button>
-                        </div>
+                        <button
+                          onClick={() => removeFromCart(e.key)}
+                          className="w-8 h-8 flex items-center justify-center rounded-lg border border-red-500/40 text-red-400 hover:bg-red-500/20 transition"
+                          title="Hapus"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
                       </li>
                     ))}
                   </ul>
@@ -679,7 +699,7 @@ export function ArknightsPricelistSection({ waNumber = "6281247195240" }: { waNu
                       transition={{ duration: 0.2 }}
                       className="font-display text-3xl text-cyan-300 tabular-nums"
                     >
-                      {formatPrice(cartTotal)}
+                      {cartTotalDisplay}
                     </motion.span>
                   </AnimatePresence>
                 </div>
@@ -709,7 +729,7 @@ function RegionModal({
   category,
   onClose,
   onAdd,
-  onSub,
+  onRemove,
   cart,
   allCategoriesForRegion,
   getItems,
@@ -718,18 +738,29 @@ function RegionModal({
   region: RegionKey;
   category: Category;
   onClose: () => void;
-  onAdd: (name: string, price: number) => void;
-  onSub: (name: string) => void;
+  onAdd: (name: string, price: number, itemCategory: string) => void;
+  onRemove: (name: string, itemCategory: string) => void;
   cart: Record<string, CartItem>;
   allCategoriesForRegion: Category[];
   getItems: (r: RegionKey, c?: Category) => { name: string; price: number; group?: string }[];
   onOrderNow: () => void;
 }) {
   const { t, formatPrice, lang } = useLang();
-  const [activeCat, setActiveCat] = useState<Category>(category);
+  
+  const availableCats = allCategoriesForRegion.filter((c) => getItems(region, c).length > 0);
+  const [activeCat, setActiveCat] = useState<Category | "All">(() => {
+    if (getItems(region, category).length > 0) return category;
+    return availableCats[0] || "All";
+  });
   const theme = regionTheme[region];
 
-  const items = getItems(region, activeCat);
+  const items = useMemo(() => {
+    if (activeCat === "All") {
+      return availableCats.flatMap(c => getItems(region, c).map(i => ({ ...i, originalCategory: c })));
+    }
+    return getItems(region, activeCat).map(i => ({ ...i, originalCategory: activeCat }));
+  }, [region, activeCat, getItems, availableCats]);
+
   // group by `group` field
   const groups = useMemo(() => {
     const map = new Map<string, typeof items>();
@@ -740,9 +771,6 @@ function RegionModal({
     });
     return Array.from(map.entries());
   }, [items, t]);
-
-  // categories actually available for this region
-  const availableCats = allCategoriesForRegion.filter((c) => getItems(region, c).length > 0);
 
   return (
     <>
@@ -790,7 +818,16 @@ function RegionModal({
           {/* Category sub-tabs (within modal) */}
           <div className="px-5 md:px-6 pt-4">
             <div className="flex gap-2 overflow-x-auto pb-3 scrollbar-none">
-              {availableCats.map((c) => {
+              <button
+                onClick={() => setActiveCat("All")}
+                className={`shrink-0 inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-tech tracking-wider uppercase transition ${activeCat === "All"
+                    ? "border-cyan-500/60 bg-cyan-500/10 text-white"
+                    : "border-white/10 bg-white/[0.02] text-zinc-400 hover:text-white"
+                  }`}
+              >
+                All
+              </button>
+              {availableCats.filter(c => c !== "All").map((c) => {
                 const Icon = categoryIcons[c];
                 const active = activeCat === c;
                 return (
@@ -836,7 +873,7 @@ function RegionModal({
                     </thead>
                     <tbody>
                       {list.map((it) => {
-                        const key = `${region}-${activeCat}-${it.name}`;
+                        const key = `${region}-${it.originalCategory}-${it.name}`;
                         const inCart = cart[key];
                         return (
                           <tr
@@ -854,32 +891,21 @@ function RegionModal({
                                   transition={{ duration: 0.15 }}
                                   className="inline-block"
                                 >
-                                  {formatPrice(it.price)}
+                                  {getDisplayPrice(it.price, lang, formatPrice)}
                                 </motion.span>
                               </AnimatePresence>
                             </td>
                             <td className="px-4 py-3 text-right">
                               {inCart ? (
-                                <div className="inline-flex items-center gap-1 rounded-lg border border-cyan-500/50 bg-cyan-500/10">
-                                  <button
-                                    onClick={() => onSub(it.name)}
-                                    className="w-7 h-7 flex items-center justify-center hover:bg-cyan-500/30"
-                                  >
-                                    <Minus className="w-3 h-3" />
-                                  </button>
-                                  <span className="w-5 text-center font-bold text-xs">
-                                    {inCart.qty}
-                                  </span>
-                                  <button
-                                    onClick={() => onAdd(it.name, it.price)}
-                                    className="w-7 h-7 flex items-center justify-center hover:bg-cyan-500/30"
-                                  >
-                                    <Plus className="w-3 h-3" />
-                                  </button>
-                                </div>
+                                <button
+                                  onClick={() => onRemove(it.name, it.originalCategory)}
+                                  className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-500 bg-cyan-500/20 px-3 py-1.5 text-[10px] font-tech tracking-wider uppercase text-cyan-400 hover:bg-red-500/20 hover:text-red-400 hover:border-red-500 transition"
+                                >
+                                  <Check className="w-3 h-3" /> Added
+                                </button>
                               ) : (
                                 <button
-                                  onClick={() => onAdd(it.name, it.price)}
+                                  onClick={() => onAdd(it.name, it.price, it.originalCategory)}
                                   className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/40 bg-cyan-500/5 px-3 py-1.5 text-[10px] font-tech tracking-wider uppercase hover:bg-cyan-500 hover:text-white hover:border-cyan-500 transition"
                                 >
                                   <Plus className="w-3 h-3" /> Add
