@@ -269,14 +269,14 @@ export const pricingData: RegionServiceBlock[] = [
     region: "Inazuma",
     category: "Quest Enkanomiya",
     items: [
+      { name: "Dasar Pemandian Bulan", price: 15000, group: "Quest Buka Area Enkanomiya" },
+      { name: "Pintu Masuk Ke Tokoyo", price: 15000, group: "Quest Buka Area Enkanomiya" },
+      { name: "Aliran Air Yang Tenang", price: 15000, group: "Quest Buka Area Enkanomiya" },
+      { name: "Dari Senja Hingga Fajar Byakuyakoku", price: 30000, group: "Quest Buka Area Enkanomiya" },
       { name: "Rahasia Erobos (Tantangan Yachimatahiko, Yachimatahime, Kunado, Tija Ujian)", price: 15000, group: "Quest Prasyarat Dalam Enkanomiya" },
       { name: "Kolenski Naga Dan Ular (Perlu Tantangan Date, Berkas Tiga Warna, Antigonus)", price: 30000, group: "Quest Prasyarat Dalam Enkanomiya" },
       { name: "Nyanyian Duka Hyperion (Perlu Kumpul 59 Sigil)", price: 15000, group: "Quest Prasyarat Dalam Enkanomiya" },
       { name: "Pemakan Lotus", price: 15000, group: "Quest Prasyarat Dalam Enkanomiya" },
-      { name: "Buka Enkanomiya — Dasar Pemandian Bulan", price: 15000, group: "Quest Buka Area Enkanomiya" },
-      { name: "Buka Enkanomiya — Pintu Masuk Ke Tokoyo", price: 15000, group: "Quest Buka Area Enkanomiya" },
-      { name: "Buka Enkanomiya — Aliran Air Yang Tenang", price: 15000, group: "Quest Buka Area Enkanomiya" },
-      { name: "Buka Enkanomiya — Dari Senja Hingga Fajar Byakuyakoku", price: 30000, group: "Quest Buka Area Enkanomiya" },
     ],
   },
   {

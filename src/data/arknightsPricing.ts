@@ -108,8 +108,8 @@ export const arknightsPricingData: PricingBlock[] = [
     region: "Base & Infrastruktur",
     category: "Pabrik & Tambang",
     items: [
-      { name: "Set Up Pabrik Inti", price: 20000, group: "Set Up Pabrik (Pantau 2 Hari)" },
-      { name: "Set Up Pabrik Cabang", price: 15000, group: "Set Up Pabrik (Pantau 2 Hari)" },
+      { name: "Set Up Pabrik Inti", price: 15000, group: "Set Up Pabrik (Pantau 2 Hari)" },
+      { name: "Set Up Pabrik Cabang", price: 10000, group: "Set Up Pabrik (Pantau 2 Hari)" },
       { name: "Pemasangan Ziplin Valley IV", price: 40000, group: "Pemasangan Ziplin" },
       { name: "Pemasangan Ziplin Wuling", price: 35000, group: "Pemasangan Ziplin" },
       { name: "Open Tambang Valley IV", price: 30000, group: "Open Tambang" },
@@ -124,15 +124,15 @@ export const arknightsPricingData: PricingBlock[] = [
     items: [
       { name: "Quest Buka Zona", price: 25000, group: "Zone 1 - 3" },
       { name: "Chest", price: 20000, group: "Zone 1 - 3" },
-      { name: "Komisi", price: 5000, group: "Zone 1 - 3" },
+      { name: "Komisi", price: 20000, group: "Zone 1 - 3" },
       
-      { name: "Quest Buka Zona", price: 15000, group: "Zone 4" },
+      { name: "Quest Buka Zona", price: 10000, group: "Zone 4" },
       { name: "Chest", price: 10000, group: "Zone 4" },
-      { name: "Komisi", price: 6000, group: "Zone 4" },
+      { name: "Komisi", price: 10000, group: "Zone 4" },
       
-      { name: "Quest Buka Zona", price: 20000, group: "Zone 5 - 6" },
-      { name: "Chest", price: 20000, group: "Zone 5 - 6" },
-      { name: "Komisi", price: 6000, group: "Zone 5 - 6" },
+      { name: "Quest Buka Zona", price: 15000, group: "Zone 5 - 6" },
+      { name: "Chest", price: 10000, group: "Zone 5 - 6" },
+      { name: "Komisi", price: 15000, group: "Zone 5 - 6" },
     ],
   },
 
