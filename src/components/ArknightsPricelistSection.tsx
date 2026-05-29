@@ -568,12 +568,12 @@ export function ArknightsPricelistSection({ waNumber = "6281247195240" }: { waNu
             region={openRegion}
             category={category}
             onClose={() => setOpenRegion(null)}
-            onAdd={(name, price, itemCategory) => {
-              const key = `${openRegion}-${itemCategory}-${name}`;
-              addToCart(key, `${name} (${openRegion})`, price);
+            onAdd={(name, price, itemCategory, group) => {
+              const key = `${openRegion}-${itemCategory}-${group ?? ""}-${name}`;
+              addToCart(key, `${name} (${group ? group + " - " : ""}${openRegion})`, price);
             }}
             cart={cart}
-            onRemove={(name, itemCategory) => removeFromCart(`${openRegion}-${itemCategory}-${name}`)}
+            onRemove={(name, itemCategory, group) => removeFromCart(`${openRegion}-${itemCategory}-${group ?? ""}-${name}`)}
             allCategoriesForRegion={allCategories}
             getItems={getItems}
             onOrderNow={() => setFormOpen(true)}
@@ -740,8 +740,8 @@ function RegionModal({
   region: RegionKey;
   category: Category;
   onClose: () => void;
-  onAdd: (name: string, price: number, itemCategory: string) => void;
-  onRemove: (name: string, itemCategory: string) => void;
+  onAdd: (name: string, price: number, itemCategory: string, group?: string) => void;
+  onRemove: (name: string, itemCategory: string, group?: string) => void;
   cart: Record<string, CartItem>;
   allCategoriesForRegion: Category[];
   getItems: (r: RegionKey, c?: Category) => { name: string; price: number; group?: string }[];
@@ -875,18 +875,18 @@ function RegionModal({
                     </thead>
                     <tbody>
                       {list.map((it) => {
-                        const key = `${region}-${it.originalCategory}-${it.name}`;
+                        const key = `${region}-${it.originalCategory}-${it.group ?? ""}-${it.name}`;
                         const inCart = cart[key];
                         return (
                           <tr
-                            key={it.name}
+                            key={`${it.group}-${it.name}`}
                             className="border-t border-white/5 hover:bg-cyan-500/5 transition"
                           >
                             <td className="px-4 py-3">{it.name}</td>
                             <td className="px-4 py-3 text-right font-tech text-cyan-300 tabular-nums">
                               <AnimatePresence mode="wait">
                                 <motion.span
-                                  key={lang + it.name}
+                                  key={lang + it.group + it.name}
                                   initial={{ opacity: 0, y: -3 }}
                                   animate={{ opacity: 1, y: 0 }}
                                   exit={{ opacity: 0, y: 3 }}
@@ -900,14 +900,14 @@ function RegionModal({
                             <td className="px-4 py-3 text-right">
                               {inCart ? (
                                 <button
-                                  onClick={() => onRemove(it.name, it.originalCategory)}
+                                  onClick={() => onRemove(it.name, it.originalCategory, it.group)}
                                   className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-500 bg-cyan-500/20 px-3 py-1.5 text-[10px] font-tech tracking-wider uppercase text-cyan-400 hover:bg-red-500/20 hover:text-red-400 hover:border-red-500 transition"
                                 >
                                   <Check className="w-3 h-3" /> Added
                                 </button>
                               ) : (
                                 <button
-                                  onClick={() => onAdd(it.name, it.price, it.originalCategory)}
+                                  onClick={() => onAdd(it.name, it.price, it.originalCategory, it.group)}
                                   className="inline-flex items-center gap-1.5 rounded-lg border border-cyan-500/40 bg-cyan-500/5 px-3 py-1.5 text-[10px] font-tech tracking-wider uppercase hover:bg-cyan-500 hover:text-white hover:border-cyan-500 transition"
                                 >
                                   <Plus className="w-3 h-3" /> Add
