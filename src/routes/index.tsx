@@ -14,15 +14,13 @@ import {
 
 const SOCIALS = [
   { name: "WhatsApp", url: "https://wa.me/6281247195240", icon: WhatsappIcon, color: "hover:text-green-500 hover:border-green-500/50 hover:bg-green-500/10" },
-  { name: "Discord", url: "#", icon: DiscordIcon, color: "hover:text-[#5865F2] hover:border-[#5865F2]/50 hover:bg-[#5865F2]/10" },
   { name: "Instagram", url: "#", icon: InstagramIcon, color: "hover:text-pink-500 hover:border-pink-500/50 hover:bg-pink-500/10" },
   { name: "TikTok", url: "#", icon: TiktokIcon, color: "hover:text-white hover:border-white/50 hover:bg-white/10" },
-  { name: "YouTube", url: "#", icon: YoutubeIcon, color: "hover:text-red-500 hover:border-red-500/50 hover:bg-red-500/10" },
 ];
 
 const heroChar = "/assets/background.jpeg";
-const genshinImg = "/assets/genshin.jpeg";
-const arknightsImg = "/assets/arknights.jpeg";
+const genshinImg = "/assets/miko.jpg";
+const arknightsImg = "/assets/arnights.jpeg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -201,8 +199,8 @@ function Services() {
         <div className="grid md:grid-cols-2 gap-6 mt-12 max-w-4xl mx-auto">
           {games.map((g) => (
             <Link key={g.to} to={g.to} className="group relative bg-card border border-border corner-clip overflow-hidden hover:border-primary transition-all hover:shadow-glow">
-              <div className="aspect-[16/10] relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent z-10" />
+              <div className="aspect-[16/10] relative overflow-hidden bg-black/40">
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent z-10 pointer-events-none" />
                 <img src={g.img} alt={g.name} loading="lazy" width={768} height={768} className="w-full h-full object-cover group-hover:scale-110 transition duration-700" />
                 <div className="absolute top-3 left-3 z-20 inline-flex items-center gap-2 bg-primary/90 px-2.5 py-1 corner-clip">
                   <div className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />

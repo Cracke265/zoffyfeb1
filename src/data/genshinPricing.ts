@@ -1,4 +1,5 @@
 export type Category =
+  | "All"
   | "Explore"
   | "Explore Enkanomiya"
   | "Area Khusus"
@@ -123,15 +124,10 @@ export const allRegions: RegionKey[] = [
 
 // All possible categories, used for modal rendering
 export const allCategories: Category[] = [
+  "All",
   "Explore",
   "Explore Enkanomiya",
   "Area Khusus",
-  "Quest",
-  "Quest Enkanomiya",
-  "Quest Prasyarat",
-  "Quest Prasyarat Enkanomiya",
-  "Quest Prasyarat Aranyaka",
-  "Quest Prasyarat Sumeru Gurun",
   "Rawat Akun",
   "Ascend Character",
   "Talent",
@@ -139,19 +135,24 @@ export const allCategories: Category[] = [
   "Joki Mancing",
   "Unlock Teleport",
   "Spiral Abyss",
+  "Quest Prasyarat",
+  "Quest Prasyarat Aranyaka",
+  "Quest Prasyarat Sumeru Gurun",
+  "Quest Enkanomiya",
+  "Quest",
 ];
 
 // Main horizontal tabs shown on the homepage
 export const mainCategories: Category[] = [
+  "All",
   "Explore",
   "Explore Enkanomiya",
   "Area Khusus",
-  "Quest",
-  "Quest Enkanomiya",
   "Quest Prasyarat",
-  "Quest Prasyarat Enkanomiya",
   "Quest Prasyarat Aranyaka",
   "Quest Prasyarat Sumeru Gurun",
+  "Quest Enkanomiya",
+  "Quest",
 ];
 
 // Data — keep prices in IDR (number)
@@ -246,12 +247,12 @@ export const pricingData: RegionServiceBlock[] = [
     region: "Inazuma",
     category: "Quest Prasyarat",
     items: [
-      { name: "Ritual Pemurnian Sacred Sakura", price: 45000 },
-      { name: "Kisah Tatara", price: 20000 },
-      { name: "Warisan Orobashi", price: 30000 },
-      { name: "Dasar Pemandian Bulan", price: 15000 },
-      { name: "Pemburu Badai Seirai", price: 25000 },
-      { name: "Perjalanan Menembus Kabut", price: 50000 },
+      { name: "Ritual Pemurnian Sacred Sakura", price: 45000, group: "1. Narukami Island" },
+      { name: "Kisah Tatara", price: 20000, group: "2. Kannazuka" },
+      { name: "Warisan Orobashi", price: 30000, group: "3. Yashiori Island" },
+      { name: "Dasar Pemandian Bulan", price: 15000, group: "4. Watatsumi Island" },
+      { name: "Pemburu Badai Seirai", price: 25000, group: "5. Seirai Island" },
+      { name: "Perjalanan Menembus Kabut", price: 50000, group: "6. Tsurumi Island" },
     ],
   },
   {
@@ -268,20 +269,14 @@ export const pricingData: RegionServiceBlock[] = [
     region: "Inazuma",
     category: "Quest Enkanomiya",
     items: [
+      { name: "Rahasia Erobos (Tantangan Yachimatahiko, Yachimatahime, Kunado, Tija Ujian)", price: 15000, group: "Quest Prasyarat Dalam Enkanomiya" },
+      { name: "Kolenski Naga Dan Ular (Perlu Tantangan Date, Berkas Tiga Warna, Antigonus)", price: 30000, group: "Quest Prasyarat Dalam Enkanomiya" },
+      { name: "Nyanyian Duka Hyperion (Perlu Kumpul 59 Sigil)", price: 15000, group: "Quest Prasyarat Dalam Enkanomiya" },
+      { name: "Pemakan Lotus", price: 15000, group: "Quest Prasyarat Dalam Enkanomiya" },
       { name: "Buka Enkanomiya — Dasar Pemandian Bulan", price: 15000, group: "Quest Buka Area Enkanomiya" },
       { name: "Buka Enkanomiya — Pintu Masuk Ke Tokoyo", price: 15000, group: "Quest Buka Area Enkanomiya" },
       { name: "Buka Enkanomiya — Aliran Air Yang Tenang", price: 15000, group: "Quest Buka Area Enkanomiya" },
       { name: "Buka Enkanomiya — Dari Senja Hingga Fajar Byakuyakoku", price: 30000, group: "Quest Buka Area Enkanomiya" },
-      { name: "Kolenski Naga Dan Ular (Perlu Tantangan Date, Berkas Tiga Warna, Antigonus)", price: 30000, group: "Quest Prasyarat Dalam Enkanomiya" },
-      { name: "Nyanyian Duka Hyperion (Perlu Kumpul 59 Sigil)", price: 15000, group: "Quest Prasyarat Dalam Enkanomiya" },
-      { name: "Pemakan Lotus", price: 15000, group: "Quest Prasyarat Dalam Enkanomiya" },
-    ],
-  },
-  {
-    region: "Inazuma",
-    category: "Quest Prasyarat Enkanomiya",
-    items: [
-      { name: "Rahasia Erobos (Tantangan Yachimatahiko, Yachimatahime, Kunado, Tija Ujian)", price: 15000 },
     ],
   },
   {
@@ -311,8 +306,8 @@ export const pricingData: RegionServiceBlock[] = [
       { name: "Gurun Pasir — Desert Of Hadramaveth", price: 90000, group: "Explore Gurun Pasir" },
       { name: "Gurun Pasir — Gavireh Lajavan", price: 40000, group: "Explore Gurun Pasir" },
       { name: "Gurun Pasir — Realm Of Farakhkert", price: 35000, group: "Explore Gurun Pasir" },
-      { name: "All Dendroculus", price: 200000 },
-      { name: "All Plume of Purifying Light", price: 25000 },
+      { name: "All Dendroculus", price: 200000, group: "Spesial Item" },
+      { name: "All Plume of Purifying Light", price: 25000, group: "Spesial Item" },
     ],
   },
   {
@@ -341,13 +336,13 @@ export const pricingData: RegionServiceBlock[] = [
     region: "Sumeru Desert",
     category: "Quest Prasyarat Sumeru Gurun",
     items: [
-      { name: "Gurun Pasir — Dilema Afratus (Land Of Upper Setekh)", price: 15000, group: "Quest Prasyarat Gurun Pasir" },
-      { name: "Gurun Pasir — Mimpi Emas (Tersesat Di Lautan Pasir / Arkeologi / Al-Ahmar / Pasir Membakar)", price: 75000, group: "Quest Prasyarat Gurun Pasir" },
-      { name: "Gurun Pasir — Pepatah Lama, Pepatah Baru (Bukti Ganda / Penghalang / Mercenary / Bukti Pasir / Soheil)", price: 75000, group: "Quest Prasyarat Gurun Pasir" },
-      { name: "Gurun Pasir — Lagu Berkabung Bilqis (Kuil Mengalir / Pasir Mengubur 1-3 / Hijau Abadi)", price: 75000, group: "Quest Prasyarat Gurun Pasir" },
-      { name: "Gurun Pasir — Tadhla si \"Elang Pemburu\"", price: 15000, group: "Quest Prasyarat Gurun Pasir" },
-      { name: "Gurun Pasir — Kiamat Yang Telah Berlalu", price: 20000, group: "Quest Prasyarat Gurun Pasir" },
-      { name: "Gurun Pasir — Khvarena Baik Dan Buruk (Langit Indah / Asipattravana / Gema / Terang Khvarena / Tir Yazad)", price: 75000, group: "Quest Prasyarat Gurun Pasir" },
+      { name: "Dilema Afratus", price: 15000, group: "1. Land Of Upper Setekh" },
+      { name: "Mimpi Emas", price: 75000, group: "2. Hypostyle Desert & Land Of Lower Setekh" },
+      { name: "Pepatah Lama, Pepatah Baru", price: 75000, group: "2. Hypostyle Desert & Land Of Lower Setekh" },
+      { name: "Lagu Berkabung Bilqis", price: 75000, group: "3. Desert Of Hadramaveth" },
+      { name: "Tadhla si \"Elang Pemburu\"", price: 15000, group: "3. Desert Of Hadramaveth" },
+      { name: "Kiamat Yang Telah Berlalu", price: 20000, group: "3. Desert Of Hadramaveth" },
+      { name: "Khvarena Baik Dan Buruk", price: 75000, group: "4. Gavireh Lajavan & Realm Of Farakhkert" },
     ],
   },
 

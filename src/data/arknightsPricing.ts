@@ -7,6 +7,7 @@ export type RegionKey =
 
 export type Category =
   | "All"
+  | "Explore"
   | "Quest"
   | "Pabrik & Tambang"
   | "Etchspace"
@@ -23,11 +24,12 @@ export const allRegions: RegionKey[] = [
 
 export const allCategories: Category[] = [
   "All",
-  "Quest",
+  "Explore",
   "Pabrik & Tambang",
   "Etchspace",
   "Tantangan",
   "Rawat Akun",
+  "Quest",
 ];
 
 export type ServiceItem = {
@@ -46,20 +48,20 @@ export const arknightsPricingData: PricingBlock[] = [
   // --- VALLEY IV ---
   {
     region: "Valley IV",
-    category: "All",
+    category: "Explore",
     items: [
-      { name: "The Hub - Chest", price: 30000, group: "The Hub" },
-      { name: "The Hub - Aurylene", price: 20000, group: "The Hub" },
-      { name: "Terusan Lembah - Chest", price: 5000, group: "Terusan Lembah" },
-      { name: "Terusan Lembah - Aurylene", price: 5000, group: "Terusan Lembah" },
-      { name: "Tambang Batu Aburrey - Chest", price: 20000, group: "Tambang Batu Aburrey" },
-      { name: "Tambang Batu Aburrey - Aurylene", price: 14000, group: "Tambang Batu Aburrey" },
-      { name: "Taman Sains Originium - Chest", price: 20000, group: "Taman Sains Originium" },
-      { name: "Taman Sains Originium - Aurylene", price: 20000, group: "Taman Sains Originium" },
-      { name: "Lodespring Asal - Chest", price: 25000, group: "Lodespring Asal" },
-      { name: "Lodespring Asal - Aurylene", price: 18000, group: "Lodespring Asal" },
-      { name: "Dataran Tinggi Daya - Chest", price: 15000, group: "Dataran Tinggi Daya" },
-      { name: "Dataran Tinggi Daya - Aurylene", price: 14000, group: "Dataran Tinggi Daya" },
+      { name: "Chest", price: 30000, group: "1. The Hub" },
+      { name: "Aurylene", price: 20000, group: "1. The Hub" },
+      { name: "Chest", price: 5000, group: "2. Terusan Lembah" },
+      { name: "Aurylene", price: 5000, group: "2. Terusan Lembah" },
+      { name: "Chest", price: 20000, group: "3. Tambang Batu Aburrey" },
+      { name: "Aurylene", price: 14000, group: "3. Tambang Batu Aburrey" },
+      { name: "Chest", price: 20000, group: "4. Taman Sains Originium" },
+      { name: "Aurylene", price: 20000, group: "4. Taman Sains Originium" },
+      { name: "Chest", price: 25000, group: "5. Lodespring Asal" },
+      { name: "Aurylene", price: 18000, group: "5. Lodespring Asal" },
+      { name: "Chest", price: 15000, group: "6. Dataran Tinggi Daya" },
+      { name: "Aurylene", price: 14000, group: "6. Dataran Tinggi Daya" },
     ],
   },
   {
@@ -76,18 +78,18 @@ export const arknightsPricingData: PricingBlock[] = [
   // --- WULING ---
   {
     region: "Wuling",
-    category: "All",
+    category: "Explore",
     items: [
-      { name: "Kota Wuling - Chest", price: 60000, group: "Kota Wuling" },
-      { name: "Kota Wuling - Aurylene", price: 25000, group: "Kota Wuling" },
-      { name: "Lembah Jingyu - Chest", price: 25000, group: "Lembah Jingyu" },
-      { name: "Lembah Jingyu - Aurylene", price: 15000, group: "Lembah Jingyu" },
-      { name: "Kampung Benteng Qingbo - Chest", price: 20000, group: "Kampung Benteng Qingbo" },
-      { name: "Kampung Benteng Qingbo - Aurylene", price: 5000, group: "Kampung Benteng Qingbo" },
-      { name: "Batu Penanda - Chest", price: 25000, group: "Batu Penanda" },
-      { name: "Batu Penanda - Aurylene", price: 15000, group: "Batu Penanda" },
-      { name: "Area Uji Coba - Chest", price: 20000, group: "Area Uji Coba" },
-      { name: "Area Uji Coba - Aurylene", price: 10000, group: "Area Uji Coba" },
+      { name: "Chest", price: 60000, group: "1. Kota Wuling" },
+      { name: "Aurylene", price: 25000, group: "1. Kota Wuling" },
+      { name: "Chest", price: 25000, group: "2. Lembah Jingyu" },
+      { name: "Aurylene", price: 15000, group: "2. Lembah Jingyu" },
+      { name: "Chest", price: 20000, group: "3. Kampung Benteng Qingbo" },
+      { name: "Aurylene", price: 5000, group: "3. Kampung Benteng Qingbo" },
+      { name: "Chest", price: 25000, group: "4. Batu Penanda" },
+      { name: "Aurylene", price: 15000, group: "4. Batu Penanda" },
+      { name: "Chest", price: 20000, group: "5. Area Uji Coba" },
+      { name: "Aurylene", price: 10000, group: "5. Area Uji Coba" },
     ],
   },
   {
@@ -120,17 +122,17 @@ export const arknightsPricingData: PricingBlock[] = [
     region: "Etchspace Salvage",
     category: "Etchspace",
     items: [
-      { name: "Zone 1 - 3 (Quest Buka Zona)", price: 25000, group: "Zone 1 - 3" },
-      { name: "Zone 1 - 3 (Chest)", price: 20000, group: "Zone 1 - 3" },
-      { name: "Zone 1 - 3 (Komisi)", price: 20000, group: "Zone 1 - 3" },
+      { name: "Quest Buka Zona", price: 25000, group: "Zone 1 - 3" },
+      { name: "Chest", price: 20000, group: "Zone 1 - 3" },
+      { name: "Komisi", price: 5000, group: "Zone 1 - 3" },
       
-      { name: "Zone 4 (Quest Buka Zona)", price: 15000, group: "Zone 4" },
-      { name: "Zone 4 (Chest)", price: 10000, group: "Zone 4" },
-      { name: "Zone 4 (Komisi)", price: 20000, group: "Zone 4" },
+      { name: "Quest Buka Zona", price: 15000, group: "Zone 4" },
+      { name: "Chest", price: 10000, group: "Zone 4" },
+      { name: "Komisi", price: 6000, group: "Zone 4" },
       
-      { name: "Zone 5 - 6 (Quest Buka Zona)", price: 20000, group: "Zone 5 - 6" },
-      { name: "Zone 5 - 6 (Chest)", price: 20000, group: "Zone 5 - 6" },
-      { name: "Zone 5 - 6 (Komisi)", price: 20000, group: "Zone 5 - 6" },
+      { name: "Quest Buka Zona", price: 20000, group: "Zone 5 - 6" },
+      { name: "Chest", price: 20000, group: "Zone 5 - 6" },
+      { name: "Komisi", price: 6000, group: "Zone 5 - 6" },
     ],
   },
 

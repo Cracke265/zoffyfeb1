@@ -30,6 +30,7 @@ import {
   Flame,
   Check,
   CheckCircle2,
+  LayoutGrid,
 } from "lucide-react";
 import {
   pricingData,
@@ -43,6 +44,7 @@ import { useLang } from "@/context/LanguageContext";
 import { OrderFormModal } from "@/components/OrderFormModal";
 
 const categoryIcons: Record<Category, React.ComponentType<{ className?: string }>> = {
+  All: LayoutGrid,
   Explore: Compass,
   "Explore Enkanomiya": Compass,
   "Area Khusus": MapPin,
@@ -179,6 +181,7 @@ export function GenshinPricelistSection({ waNumber = "6281247195240" }: { waNumb
 
   // Regions visible in current category
   const regionsInCategory = useMemo(() => {
+    if (category === "All") return allRegions;
     const set = new Set<RegionKey>();
     pricingData.filter((b) => b.category === category).forEach((b) => set.add(b.region));
     return allRegions.filter((r) => set.has(r));
@@ -211,7 +214,7 @@ export function GenshinPricelistSection({ waNumber = "6281247195240" }: { waNumb
 
   // ── Cart helpers ──
   const addToCart = useCallback((key: string, name: string, price: number) => {
-    setCart((c) => ({ ...c, [key]: { key, name, price, qty: (c[key]?.qty ?? 0) + 1 } }));
+    setCart((c) => ({ ...c, [key]: { key, name, price, qty: 1 } }));
     setToast(name);
   }, []);
 
@@ -479,8 +482,11 @@ export function GenshinPricelistSection({ waNumber = "6281247195240" }: { waNumb
             region={openRegion}
             category={category}
             onClose={() => setOpenRegion(null)}
-            onAdd={(name, price) => addToCart(`${openRegion}-${category}-${name}`, `${name} (${openRegion})`, price)}
-            onSub={(name) => subFromCart(`${openRegion}-${category}-${name}`)}
+            onAdd={(name, price, itemCategory) => {
+              const key = `${openRegion}-${itemCategory}-${name}`;
+              addToCart(key, `${name} (${openRegion})`, price);
+            }}
+            onSub={(name, itemCategory) => subFromCart(`${openRegion}-${itemCategory}-${name}`)}
             cart={cart}
             allCategoriesForRegion={allCategories}
             getItems={getItems}
@@ -559,19 +565,13 @@ export function GenshinPricelistSection({ waNumber = "6281247195240" }: { waNumb
                           <AnimatePresence mode="wait">
                               <motion.div key={lang + e.key} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}
                                 className="text-xs font-tech text-red-400 tabular-nums">
-                                {getDisplayPrice(e.price, lang, formatPrice)} × {e.qty}
+                                {getDisplayPrice(e.price, lang, formatPrice)}
                               </motion.div>
                           </AnimatePresence>
                         </div>
-                        <div className="flex items-center gap-1 rounded-lg border border-white/10">
-                          <button onClick={() => subFromCart(e.key)} className="w-7 h-7 flex items-center justify-center hover:bg-red-500/20">
-                            <Minus className="w-3 h-3" />
-                          </button>
-                          <span className="w-6 text-center text-sm font-bold">{e.qty}</span>
-                          <button onClick={() => addToCart(e.key, e.name, e.price)} className="w-7 h-7 flex items-center justify-center hover:bg-red-500/20">
-                            <Plus className="w-3 h-3" />
-                          </button>
-                        </div>
+                        <button onClick={() => subFromCart(e.key)} className="w-7 h-7 rounded-lg flex items-center justify-center border border-white/10 hover:bg-red-500/20 hover:border-red-500/40 hover:text-red-400 transition">
+                          <X className="w-3 h-3" />
+                        </button>
                       </li>
                     ))}
                   </ul>
@@ -617,18 +617,27 @@ function RegionModal({
   region: RegionKey;
   category: Category;
   onClose: () => void;
-  onAdd: (name: string, price: number) => void;
-  onSub: (name: string) => void;
+  onAdd: (name: string, price: number, itemCategory: string) => void;
+  onSub: (name: string, itemCategory: string) => void;
   cart: Record<string, CartItem>;
   allCategoriesForRegion: Category[];
   getItems: (r: RegionKey, c?: Category) => { name: string; price: number; group?: string }[];
   onOrderNow: () => void;
 }) {
   const { t, formatPrice, lang } = useLang();
-  const [activeCat, setActiveCat] = useState<Category>(category);
+  const availableCats = allCategoriesForRegion.filter((c) => getItems(region, c).length > 0);
+  const [activeCat, setActiveCat] = useState<Category | "All">(() => {
+    if (getItems(region, category).length > 0) return category;
+    return availableCats[0] || "All";
+  });
   const theme = regionTheme[region];
 
-  const items = getItems(region, activeCat);
+  const items = useMemo(() => {
+    if (activeCat === "All") {
+      return availableCats.flatMap(c => getItems(region, c).map(i => ({ ...i, originalCategory: c })));
+    }
+    return getItems(region, activeCat).map(i => ({ ...i, originalCategory: activeCat }));
+  }, [region, activeCat, getItems, availableCats]);
   const groups = useMemo(() => {
     const map = new Map<string, typeof items>();
     items.forEach((i) => {
@@ -638,9 +647,6 @@ function RegionModal({
     });
     return Array.from(map.entries());
   }, [items, t]);
-
-  const availableCats = allCategoriesForRegion.filter((c) => getItems(region, c).length > 0);
-  const hasInCart = Object.keys(cart).some((k) => k.startsWith(`${region}-`));
 
   return (
     <>
@@ -674,7 +680,17 @@ function RegionModal({
           {/* Category sub-tabs */}
           <div className="px-5 md:px-6 pt-4">
             <div className="flex gap-2 overflow-x-auto pb-3">
-              {availableCats.map((c) => {
+              <button
+                onClick={() => setActiveCat("All")}
+                className={`shrink-0 inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-tech tracking-wider uppercase transition ${
+                  activeCat === "All"
+                    ? "border-red-500/60 bg-red-500/10 text-white"
+                    : "border-white/10 bg-white/[0.02] text-zinc-400 hover:text-white"
+                }`}
+              >
+                All
+              </button>
+              {availableCats.filter(c => c !== "All").map((c) => {
                 const Icon = categoryIcons[c];
                 const active = activeCat === c;
                 return (
@@ -713,7 +729,7 @@ function RegionModal({
                     </thead>
                     <tbody>
                       {list.map((it) => {
-                        const key = `${region}-${activeCat}-${it.name}`;
+                        const key = `${region}-${it.originalCategory}-${it.name}`;
                         const inCart = cart[key];
                         return (
                           <tr key={it.name} className="border-t border-white/5 hover:bg-red-500/5 transition">
@@ -729,18 +745,15 @@ function RegionModal({
                             </td>
                             <td className="px-4 py-3 text-right">
                               {inCart ? (
-                                <div className="inline-flex items-center gap-1 rounded-lg border border-red-500/50 bg-red-500/10">
-                                  <button onClick={() => onSub(it.name)} className="w-7 h-7 flex items-center justify-center hover:bg-red-500/30">
-                                    <Minus className="w-3 h-3" />
-                                  </button>
-                                  <span className="w-6 text-center font-bold text-sm">{inCart.qty}</span>
-                                  <button onClick={() => onAdd(it.name, it.price)} className="w-7 h-7 flex items-center justify-center hover:bg-red-500/30">
-                                    <Plus className="w-3 h-3" />
-                                  </button>
-                                </div>
+                                <button
+                                  onClick={() => onSub(it.name, it.originalCategory)}
+                                  className="inline-flex items-center gap-1.5 rounded-lg border border-green-500/60 bg-green-500/10 px-3 py-1.5 text-[10px] font-tech tracking-wider uppercase text-green-400 hover:bg-red-500/10 hover:border-red-500/40 hover:text-red-400 transition group/btn"
+                                >
+                                  <Check className="w-3 h-3" /> Added
+                                </button>
                               ) : (
                                 <button
-                                  onClick={() => onAdd(it.name, it.price)}
+                                  onClick={() => onAdd(it.name, it.price, it.originalCategory)}
                                   className="inline-flex items-center gap-1.5 rounded-lg border border-red-500/40 bg-red-500/5 px-3 py-1.5 text-[10px] font-tech tracking-wider uppercase hover:bg-red-500 hover:text-white hover:border-red-500 transition"
                                 >
                                   <Plus className="w-3 h-3" /> Add

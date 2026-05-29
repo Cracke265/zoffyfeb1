@@ -20,6 +20,7 @@ import {
   Wrench,
   CheckCircle2,
   Check,
+  LayoutGrid,
 } from "lucide-react";
 
 import {
@@ -34,7 +35,8 @@ import { useLang } from "@/context/LanguageContext";
 import { OrderFormModal } from "@/components/OrderFormModal";
 
 const categoryIcons: Record<Category, React.ComponentType<{ className?: string }>> = {
-  All: Compass,
+  All: LayoutGrid,
+  Explore: Compass,
   Quest: ScrollText,
   "Pabrik & Tambang": Factory,
   Etchspace: Hexagon,
