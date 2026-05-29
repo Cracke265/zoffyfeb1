@@ -36,8 +36,9 @@ export function OrderFormModal({
 
   const handleSend = () => {
     const isEn = lang === "en";
+    const totalFormatted = formatPrice(cartTotal);
     const lines = isEn ? [
-      "Dear Admin Zoffyfeb,",
+      "Hello Admin Zoffyfeb,",
       "",
       "I would like to order a boosting service with the following details:",
       "",
@@ -47,6 +48,8 @@ export function OrderFormModal({
         (e, i) => `${i + 1}. ${e.name} ×${e.qty}`
       ),
       "",
+      `*Total Price:* ${totalFormatted}`,
+      "",
       `*Account Details:*`,
       `- IGN / Nickname: ${ign}`,
       `- Server: ${server}`,
@@ -54,7 +57,7 @@ export function OrderFormModal({
       "",
       "Please provide guidance for the payment steps and the next execution process. Thank you.",
     ] : [
-      "Yth. Admin Zoffyfeb,",
+      "Halo Admin Zoffyfeb,",
       "",
       "Saya ingin melakukan pemesanan layanan joki dengan rincian berikut:",
       "",
@@ -63,6 +66,8 @@ export function OrderFormModal({
       ...cartEntries.map(
         (e, i) => `${i + 1}. ${e.name} ×${e.qty}`
       ),
+      "",
+      `*Total Harga:* ${totalFormatted}`,
       "",
       `*Detail Akun:*`,
       `- IGN / Nickname: ${ign}`,
