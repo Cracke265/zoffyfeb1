@@ -45,7 +45,7 @@ export function OrderFormModal({
       `*Game:* ${game === "genshin" ? "Genshin Impact" : "Arknights Endfield"}`,
       `*Services List:*`,
       ...cartEntries.map(
-        (e, i) => `${i + 1}. ${e.name} ×${e.qty}`
+        (e, i) => `${i + 1}. ${e.name} - ${formatPrice(e.price)}`
       ),
       "",
       `*Total Price:* ${totalFormatted}`,
@@ -64,7 +64,7 @@ export function OrderFormModal({
       `*Game:* ${game === "genshin" ? "Genshin Impact" : "Arknights Endfield"}`,
       `*Daftar Layanan:*`,
       ...cartEntries.map(
-        (e, i) => `${i + 1}. ${e.name} ×${e.qty}`
+        (e, i) => `${i + 1}. ${e.name} - ${formatPrice(e.price)}`
       ),
       "",
       `*Total Harga:* ${totalFormatted}`,
