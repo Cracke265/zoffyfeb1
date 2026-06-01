@@ -188,6 +188,8 @@ export const pricingData: RegionServiceBlock[] = [
     items: [
       { name: "Normal Quest Pendek", price: 5000 },
       { name: "Normal Quest Panjang", price: 10000 },
+      { name: "Quest Archon", price: 20000 },
+      { name: "Quest Character", price: 20000 },
     ],
   },
 
@@ -226,6 +228,8 @@ export const pricingData: RegionServiceBlock[] = [
     items: [
       { name: "Normal Quest Pendek", price: 5000 },
       { name: "Normal Quest Panjang", price: 10000 },
+      { name: "Quest Archon", price: 20000 },
+      { name: "Quest Character", price: 20000 },
     ],
   },
 
@@ -261,6 +265,8 @@ export const pricingData: RegionServiceBlock[] = [
     items: [
       { name: "Normal Quest Pendek", price: 5000 },
       { name: "Normal Quest Panjang", price: 10000 },
+      { name: "Quest Archon", price: 20000 },
+      { name: "Quest Character", price: 20000 },
     ],
   },
 
@@ -316,6 +322,8 @@ export const pricingData: RegionServiceBlock[] = [
     items: [
       { name: "Normal Quest Pendek", price: 5000 },
       { name: "Normal Quest Panjang", price: 10000 },
+      { name: "Quest Archon", price: 20000 },
+      { name: "Quest Character", price: 20000 },
     ],
   },
   {
@@ -375,6 +383,8 @@ export const pricingData: RegionServiceBlock[] = [
     items: [
       { name: "Normal Quest Pendek", price: 5000 },
       { name: "Normal Quest Panjang", price: 10000 },
+      { name: "Quest Archon", price: 20000 },
+      { name: "Quest Character", price: 20000 },
     ],
   },
   {
