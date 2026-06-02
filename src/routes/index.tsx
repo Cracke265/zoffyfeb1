@@ -14,8 +14,8 @@ import {
 
 const SOCIALS = [
   { name: "WhatsApp", url: "https://wa.me/6281247195240", icon: WhatsappIcon, color: "hover:text-green-500 hover:border-green-500/50 hover:bg-green-500/10" },
-  { name: "Instagram", url: "#", icon: InstagramIcon, color: "hover:text-pink-500 hover:border-pink-500/50 hover:bg-pink-500/10" },
-  { name: "TikTok", url: "#", icon: TiktokIcon, color: "hover:text-white hover:border-white/50 hover:bg-white/10" },
+  { name: "Instagram", url: "https://www.instagram.com/zoffyfebby?igsh=MWQxdmQ1cXhlZm5iYQ==", icon: InstagramIcon, color: "hover:text-pink-500 hover:border-pink-500/50 hover:bg-pink-500/10" },
+  { name: "TikTok", url: "https://www.tiktok.com/@zoffyfeb", icon: TiktokIcon, color: "hover:text-white hover:border-white/50 hover:bg-white/10" },
 ];
 
 const heroChar = "/assets/background.jpeg";
