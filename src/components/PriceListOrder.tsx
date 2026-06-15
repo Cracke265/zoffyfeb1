@@ -120,7 +120,7 @@ export function PriceListOrder({
                         <div className={`text-sm md:text-base ${it.bold ? "font-bold" : ""}`}>
                           {it.name}
                         </div>
-                        <div className="font-tech text-primary text-sm mt-1 tabular-nums">
+                        <div className="font-sans font-semibold text-primary text-sm mt-1 tabular-nums">
                           {formatIDR(price)}
                         </div>
                       </div>
@@ -214,7 +214,7 @@ export function PriceListOrder({
                     <li key={e.key} className="flex items-center gap-3 p-3 border border-border corner-clip bg-background/50">
                       <div className="flex-1 min-w-0">
                         <div className="text-sm font-medium truncate">{e.name}</div>
-                        <div className="text-xs font-tech text-primary tabular-nums">
+                        <div className="text-xs font-sans font-semibold text-primary tabular-nums">
                           {formatIDR(e.price)} × {e.qty}
                         </div>
                       </div>
@@ -253,7 +253,7 @@ export function PriceListOrder({
                 <span className="font-tech text-xs tracking-widest text-muted-foreground uppercase">
                   Total ({totalQty} item)
                 </span>
-                <span className="font-display text-3xl text-gradient-primary tabular-nums">
+                <span className="font-sans font-semibold text-3xl text-gradient-primary tabular-nums">
                   {formatIDR(total)}
                 </span>
               </div>

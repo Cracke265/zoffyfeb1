@@ -333,7 +333,7 @@ export function ArknightsPricelistSection({ waNumber = "6281247195240" }: { waNu
                                 {r.region} · {r.category}
                               </div>
                             </div>
-                            <span className="font-tech text-sm text-cyan-400 tabular-nums">
+                            <span className="font-sans font-semibold text-sm text-cyan-400 tabular-nums">
                               {getDisplayPrice(r.price, lang, shortPrice)}
                             </span>
                           </button>
@@ -549,7 +549,7 @@ export function ArknightsPricelistSection({ waNumber = "6281247195240" }: { waNu
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 4 }}
                       transition={{ duration: 0.2 }}
-                      className="font-display text-2xl text-cyan-300 tabular-nums"
+                      className="font-sans font-semibold text-2xl text-cyan-300 tabular-nums"
                     >
                       {calcEstimate !== null ? getDisplayPrice(calcEstimate, lang, formatPrice) : "—"}
                     </motion.span>
@@ -669,7 +669,7 @@ export function ArknightsPricelistSection({ waNumber = "6281247195240" }: { waNu
                               animate={{ opacity: 1 }}
                               exit={{ opacity: 0 }}
                               transition={{ duration: 0.15 }}
-                              className="text-xs font-tech text-cyan-400 tabular-nums"
+                              className="text-xs font-sans font-semibold text-cyan-400 tabular-nums"
                             >
                               {getDisplayPrice(e.price, lang, formatPrice)}
                             </motion.div>
@@ -699,7 +699,7 @@ export function ArknightsPricelistSection({ waNumber = "6281247195240" }: { waNu
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.95 }}
                       transition={{ duration: 0.2 }}
-                      className="font-display text-3xl text-cyan-300 tabular-nums"
+                      className="font-sans font-semibold text-3xl text-cyan-300 tabular-nums"
                     >
                       {cartTotalDisplay}
                     </motion.span>
@@ -883,7 +883,7 @@ function RegionModal({
                             className="border-t border-white/5 hover:bg-cyan-500/5 transition"
                           >
                             <td className="px-4 py-3">{it.name}</td>
-                            <td className="px-4 py-3 text-right font-tech text-cyan-300 tabular-nums">
+                            <td className="px-4 py-3 text-right font-sans font-semibold text-cyan-300 tabular-nums">
                               <AnimatePresence mode="wait">
                                 <motion.span
                                   key={lang + it.group + it.name}

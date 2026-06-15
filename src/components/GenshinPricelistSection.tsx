@@ -322,7 +322,7 @@ export function GenshinPricelistSection({ waNumber = "6281247195240" }: { waNumb
                               <div className="text-sm font-medium truncate">{r.name}</div>
                               <div className="text-xs text-zinc-500 mt-0.5">{r.region} · {r.category}</div>
                             </div>
-                            <span className="font-tech text-sm text-red-400 tabular-nums">{getDisplayPrice(r.price, lang, shortPrice)}</span>
+                            <span className="font-sans font-semibold text-sm text-red-400 tabular-nums">{getDisplayPrice(r.price, lang, shortPrice)}</span>
                           </button>
                         </li>
                       ))}
@@ -463,7 +463,7 @@ export function GenshinPricelistSection({ waNumber = "6281247195240" }: { waNumb
                   <AnimatePresence mode="wait">
                     <motion.span key={lang + String(calcEstimate)}
                       initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 4 }}
-                      transition={{ duration: 0.2 }} className="font-display text-2xl text-red-300 tabular-nums"
+                      transition={{ duration: 0.2 }} className="font-sans font-semibold text-2xl text-red-300 tabular-nums"
                     >
                       {calcEstimate !== null ? getDisplayPrice(calcEstimate, lang, formatPrice) : "—"}
                     </motion.span>
@@ -564,7 +564,7 @@ export function GenshinPricelistSection({ waNumber = "6281247195240" }: { waNumb
                           <div className="text-sm font-medium truncate">{e.name}</div>
                           <AnimatePresence mode="wait">
                               <motion.div key={lang + e.key} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}
-                                className="text-xs font-tech text-red-400 tabular-nums">
+                                className="text-xs font-sans font-semibold text-red-400 tabular-nums">
                                 {getDisplayPrice(e.price, lang, formatPrice)}
                               </motion.div>
                           </AnimatePresence>
@@ -585,7 +585,7 @@ export function GenshinPricelistSection({ waNumber = "6281247195240" }: { waNumb
                   <AnimatePresence mode="wait">
                     <motion.span key={lang + cartTotal}
                       initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-                      transition={{ duration: 0.2 }} className="font-display text-3xl text-red-300 tabular-nums">
+                      transition={{ duration: 0.2 }} className="font-sans font-semibold text-3xl text-red-300 tabular-nums">
                       {cartTotalDisplay}
                     </motion.span>
                   </AnimatePresence>
@@ -734,7 +734,7 @@ function RegionModal({
                         return (
                           <tr key={it.name} className="border-t border-white/5 hover:bg-red-500/5 transition">
                             <td className="px-4 py-3">{it.name}</td>
-                            <td className="px-4 py-3 text-right font-tech text-red-300 tabular-nums">
+                            <td className="px-4 py-3 text-right font-sans font-semibold text-red-300 tabular-nums">
                               <AnimatePresence mode="wait">
                                 <motion.span key={lang + it.name}
                                   initial={{ opacity: 0, y: -3 }} animate={{ opacity: 1, y: 0 }}

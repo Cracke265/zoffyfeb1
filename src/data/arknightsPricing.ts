@@ -90,6 +90,8 @@ export const arknightsPricingData: PricingBlock[] = [
       { name: "Aurylene", price: 15000, group: "4. Batu Penanda" },
       { name: "Chest", price: 20000, group: "5. Area Uji Coba" },
       { name: "Aurylene", price: 10000, group: "5. Area Uji Coba" },
+      { name: "Chest", price: 25000, group: "6. Lembah Benteng Pedang" },
+      { name: "Aurylene", price: 10000, group: "6. Lembah Benteng Pedang" },
     ],
   },
   {
@@ -110,10 +112,10 @@ export const arknightsPricingData: PricingBlock[] = [
     items: [
       { name: "Set Up Pabrik Inti", price: 15000, group: "Set Up Pabrik (Pantau 2 Hari)" },
       { name: "Set Up Pabrik Cabang", price: 10000, group: "Set Up Pabrik (Pantau 2 Hari)" },
-      { name: "Pemasangan Ziplin Valley IV", price: 40000, group: "Pemasangan Ziplin" },
-      { name: "Pemasangan Ziplin Wuling", price: 35000, group: "Pemasangan Ziplin" },
+      { name: "Pemasangan Ziplin Valley IV", price: 45000, group: "Pemasangan Ziplin" },
+      { name: "Pemasangan Ziplin Wuling", price: 45000, group: "Pemasangan Ziplin" },
       { name: "Open Tambang Valley IV", price: 30000, group: "Open Tambang" },
-      { name: "Open Tambang Wuling", price: 25000, group: "Open Tambang" },
+      { name: "Open Tambang Wuling", price: 35000, group: "Open Tambang" },
     ],
   },
 
