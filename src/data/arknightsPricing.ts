@@ -68,10 +68,10 @@ export const arknightsPricingData: PricingBlock[] = [
     region: "Valley IV",
     category: "Quest",
     items: [
-      { name: "Main Quest Chapter 1", price: 20000, group: "Main Quest" },
-      { name: "Operator Side Quest", price: 15000, group: "Side Quest" },
-      { name: "Side Quest", price: 15000, group: "Side Quest" },
-      { name: "Quest Sekunder", price: 10000, group: "Side Quest" },
+      { name: "Main Quest Chapter 1", price: 30000, group: "Main Quest" },
+      { name: "Operator Side Quest", price: 30000, group: "Side Quest" },
+      { name: "Side Quest", price: 25000, group: "Side Quest" },
+      { name: "Quest Sekunder", price: 15000, group: "Side Quest" },
     ],
   },
 
@@ -98,10 +98,10 @@ export const arknightsPricingData: PricingBlock[] = [
     region: "Wuling",
     category: "Quest",
     items: [
-      { name: "Main Quest Chapter 2", price: 20000, group: "Main Quest" },
-      { name: "Operator Side Quest", price: 15000, group: "Side Quest" },
-      { name: "Side Quest", price: 15000, group: "Side Quest" },
-      { name: "Quest Sekunder", price: 10000, group: "Side Quest" },
+      { name: "Main Quest Chapter 2", price: 30000, group: "Main Quest" },
+      { name: "Operator Side Quest", price: 30000, group: "Side Quest" },
+      { name: "Side Quest", price: 25000, group: "Side Quest" },
+      { name: "Quest Sekunder", price: 15000, group: "Side Quest" },
     ],
   },
 
