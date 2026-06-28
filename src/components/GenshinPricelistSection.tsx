@@ -61,6 +61,9 @@ const categoryIcons: Record<Category, React.ComponentType<{ className?: string }
   "Joki Mancing": Fish,
   "Unlock Teleport": Navigation,
   "Spiral Abyss": Swords,
+  "Stygian Onslought": Swords,
+  "Imaginarium Theater": Sparkles,
+  "Local Legend": Sword,
 };
 
 // USD pricing table: base price brackets + $2 tax
@@ -102,8 +105,9 @@ const regionMeta: Record<string, { subtitle: string; icon: React.ElementType; ic
   Natlan: { subtitle: "Land of Fire", icon: Flame, iconColor: "text-red-500", shadow: "shadow-[0_0_20px_rgba(239,68,68,0.5)] border-red-500/30" },
   Enkanomiya: { subtitle: "Byakuyakoku", icon: Sparkles, iconColor: "text-blue-300", shadow: "shadow-[0_0_20px_rgba(147,197,253,0.5)] border-blue-300/30" },
   "Nod Krai": { subtitle: "Unknown", icon: Sparkles, iconColor: "text-zinc-400", shadow: "shadow-[0_0_20px_rgba(161,161,170,0.5)] border-zinc-400/30" },
-  "Joki Lainnya 01": { subtitle: "Account Maintenance", icon: UserCog, iconColor: "text-yellow-400", shadow: "shadow-[0_0_20px_rgba(250,204,21,0.5)] border-yellow-400/30" },
-  "Joki Lainnya 02": { subtitle: "Special Services", icon: Swords, iconColor: "text-red-400", shadow: "shadow-[0_0_20px_rgba(248,113,113,0.5)] border-red-400/30" },
+  "Joki Up Character": { subtitle: "Account Maintenance", icon: UserCog, iconColor: "text-blue-400", shadow: "shadow-[0_0_20px_rgba(96,165,250,0.5)] border-blue-400/30" },
+  "Joki Konten Game": { subtitle: "Special Services", icon: Swords, iconColor: "text-violet-400", shadow: "shadow-[0_0_20px_rgba(167,139,250,0.5)] border-violet-400/30" },
+  "Kebutuhan Lainnya": { subtitle: "Other Utilities", icon: Sparkles, iconColor: "text-teal-400", shadow: "shadow-[0_0_20px_rgba(45,212,191,0.5)] border-teal-400/30" },
 };
 
 function Particles() {

@@ -15,7 +15,10 @@ export type Category =
   | "Ascend Weapon"
   | "Joki Mancing"
   | "Unlock Teleport"
-  | "Spiral Abyss";
+  | "Spiral Abyss"
+  | "Stygian Onslought"
+  | "Imaginarium Theater"
+  | "Local Legend";
 
 export type RegionKey =
   | "Mondstadt"
@@ -25,8 +28,9 @@ export type RegionKey =
   | "Fontaine"
   | "Natlan"
   | "Nod Krai"
-  | "Joki Lainnya 01"
-  | "Joki Lainnya 02";
+  | "Joki Up Character"
+  | "Joki Konten Game"
+  | "Kebutuhan Lainnya";
 
 export interface ServiceItem {
   name: string;
@@ -94,19 +98,26 @@ export const regionTheme: Record<
     glow: "shadow-[0_0_40px_-5px_rgba(34,211,238,0.55)]",
     label: "text-cyan-200",
   },
-  "Joki Lainnya 01": {
+  "Joki Up Character": {
     from: "from-blue-500/30",
     to: "to-indigo-600/10",
     ring: "ring-blue-500/40",
     glow: "shadow-[0_0_40px_-5px_rgba(59,130,246,0.6)]",
     label: "text-blue-200",
   },
-  "Joki Lainnya 02": {
+  "Joki Konten Game": {
     from: "from-violet-500/30",
     to: "to-fuchsia-600/10",
     ring: "ring-violet-500/40",
     glow: "shadow-[0_0_40px_-5px_rgba(139,92,246,0.6)]",
     label: "text-violet-200",
+  },
+  "Kebutuhan Lainnya": {
+    from: "from-teal-500/30",
+    to: "to-emerald-600/10",
+    ring: "ring-teal-500/40",
+    glow: "shadow-[0_0_40px_-5px_rgba(20,184,166,0.6)]",
+    label: "text-teal-200",
   },
 };
 
@@ -118,8 +129,9 @@ export const allRegions: RegionKey[] = [
   "Fontaine",
   "Natlan",
   "Nod Krai",
-  "Joki Lainnya 01",
-  "Joki Lainnya 02",
+  "Joki Up Character",
+  "Joki Konten Game",
+  "Kebutuhan Lainnya",
 ];
 
 // All possible categories, used for modal rendering
@@ -135,6 +147,9 @@ export const allCategories: Category[] = [
   "Joki Mancing",
   "Unlock Teleport",
   "Spiral Abyss",
+  "Stygian Onslought",
+  "Imaginarium Theater",
+  "Local Legend",
   "Quest Prasyarat",
   "Quest Prasyarat Aranyaka",
   "Quest Prasyarat Sumeru Gurun",
@@ -494,19 +509,9 @@ export const pricingData: RegionServiceBlock[] = [
     ],
   },
 
-  // ───── JOKI LAINNYA 01 CARD ─────
+  // ───── JOKI UP CHARACTER CARD ─────
   {
-    region: "Joki Lainnya 01",
-    category: "Rawat Akun",
-    items: [
-      { name: "Daily", price: 5000 },
-      { name: "Weekly", price: 30000 },
-      { name: "Monthly", price: 110000 },
-      
-    ],
-  },
-  {
-    region: "Joki Lainnya 01",
+    region: "Joki Up Character",
     category: "Ascend Character",
     items: [
       { name: "Level 1 - 20", price: 5000 },
@@ -519,7 +524,7 @@ export const pricingData: RegionServiceBlock[] = [
     ],
   },
   {
-    region: "Joki Lainnya 01",
+    region: "Joki Up Character",
     category: "Talent",
     items: [
       { name: "Level 1 – 2", price: 2000 },
@@ -534,7 +539,7 @@ export const pricingData: RegionServiceBlock[] = [
     ],
   },
   {
-    region: "Joki Lainnya 01",
+    region: "Joki Up Character",
     category: "Ascend Weapon",
     items: [
       { name: "Level 1 - 20", price: 3000 },
@@ -547,9 +552,60 @@ export const pricingData: RegionServiceBlock[] = [
     ],
   },
 
-  // ───── JOKI LAINNYA 02 CARD ─────
+  // ───── JOKI KONTEN GAME CARD ─────
   {
-    region: "Joki Lainnya 02",
+    region: "Joki Konten Game",
+    category: "Spiral Abyss",
+    items: [
+      { name: "Lantai 1 – 8 (per lantai)", price: 10000 },
+      { name: "Lantai 9 – 10 (per lantai)", price: 15000 },
+      { name: "Lantai 11 – 12 (per lantai)", price: 2000 },
+    ],
+  },
+  {
+    region: "Joki Konten Game",
+    category: "Stygian Onslought",
+    items: [
+      { name: "Normal Mode", price: 10000 },
+      { name: "Lanjutan", price: 10000 },
+      { name: "Sulit", price: 10000 },
+      { name: "Mengancam", price: 20000 },
+      { name: "Extra Sulit", price: 20000 },
+    ],
+  },
+  {
+    region: "Joki Konten Game",
+    category: "Imaginarium Theater",
+    items: [
+      { name: "Mudah", price: 10000 },
+      { name: "Sedang", price: 10000 },
+      { name: "Sulit", price: 15000 },
+      { name: "Mode Visionary", price: 20000 },
+      { name: "Mode Lunar", price: 20000 },
+    ],
+  },
+  {
+    region: "Joki Konten Game",
+    category: "Local Legend",
+    items: [
+      { name: "Nod Krai (per boss)", price: 10000 },
+      { name: "Natlan (per boss)", price: 10000 },
+      { name: "Fontaine (per boss)", price: 10000 },
+    ],
+  },
+
+  // ───── KEBUTUHAN LAINNYA CARD ─────
+  {
+    region: "Kebutuhan Lainnya",
+    category: "Rawat Akun",
+    items: [
+      { name: "Daily", price: 5000 },
+      { name: "Weekly", price: 30000 },
+      { name: "Monthly", price: 110000 },
+    ],
+  },
+  {
+    region: "Kebutuhan Lainnya",
     category: "Joki Mancing",
     items: [
       { name: "The Catch — Senjata Saja/R1", price: 17000, group: "1. The Catch" },
@@ -561,7 +617,7 @@ export const pricingData: RegionServiceBlock[] = [
     ],
   },
   {
-    region: "Joki Lainnya 02",
+    region: "Kebutuhan Lainnya",
     category: "Unlock Teleport",
     items: [
       { name: "Mondstadt", price: 25000 },
@@ -571,15 +627,6 @@ export const pricingData: RegionServiceBlock[] = [
       { name: "Fontaine", price: 35000 },
       { name: "Natlan", price: 40000 },
       { name: "Nod Krai", price: 30000 },
-    ],
-  },
-  {
-    region: "Joki Lainnya 02",
-    category: "Spiral Abyss",
-    items: [
-      { name: "Lantai 1 – 8 (per lantai)", price: 10000 },
-      { name: "Lantai 9 – 10 (per lantai)", price: 15000 },
-      { name: "Lantai 11 – 12 (per lantai)", price: 25000 },
     ],
   },
 ];
