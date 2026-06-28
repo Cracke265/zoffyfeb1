@@ -64,6 +64,7 @@ const categoryIcons: Record<Category, React.ComponentType<{ className?: string }
   "Stygian Onslought": Swords,
   "Imaginarium Theater": Sparkles,
   "Local Legend": Sword,
+  "Material": Sparkles,
 };
 
 // USD pricing table: base price brackets + $2 tax
@@ -161,7 +162,7 @@ function AddedToast({ name, onDone }: { name: string; onDone: () => void }) {
 export function GenshinPricelistSection({ waNumber = "6281247195240" }: { waNumber?: string }) {
   const { t, formatPrice, shortPrice, lang } = useLang();
 
-  const [category, setCategory] = useState<Category>("Explore");
+  const [category, setCategory] = useState<Category>("All");
   const [search, setSearch] = useState("");
   const [regionFilter, setRegionFilter] = useState<RegionKey | "all">("all");
   const [openRegion, setOpenRegion] = useState<RegionKey | null>(null);

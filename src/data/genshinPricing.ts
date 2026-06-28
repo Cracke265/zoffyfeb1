@@ -18,7 +18,8 @@ export type Category =
   | "Spiral Abyss"
   | "Stygian Onslought"
   | "Imaginarium Theater"
-  | "Local Legend";
+  | "Local Legend"
+  | "Material";
 
 export type RegionKey =
   | "Mondstadt"
@@ -150,6 +151,7 @@ export const allCategories: Category[] = [
   "Stygian Onslought",
   "Imaginarium Theater",
   "Local Legend",
+  "Material",
   "Quest Prasyarat",
   "Quest Prasyarat Aranyaka",
   "Quest Prasyarat Sumeru Gurun",
@@ -559,7 +561,7 @@ export const pricingData: RegionServiceBlock[] = [
     items: [
       { name: "Lantai 1 – 8 (per lantai)", price: 10000 },
       { name: "Lantai 9 – 10 (per lantai)", price: 15000 },
-      { name: "Lantai 11 – 12 (per lantai)", price: 2000 },
+      { name: "Lantai 11 – 12 (per lantai)", price: 20000 },
     ],
   },
   {
@@ -568,7 +570,7 @@ export const pricingData: RegionServiceBlock[] = [
     items: [
       { name: "Normal Mode", price: 10000 },
       { name: "Lanjutan", price: 10000 },
-      { name: "Sulit", price: 10000 },
+      { name: "Sulit", price: 15000 },
       { name: "Mengancam", price: 20000 },
       { name: "Extra Sulit", price: 20000 },
     ],
@@ -627,6 +629,16 @@ export const pricingData: RegionServiceBlock[] = [
       { name: "Fontaine", price: 35000 },
       { name: "Natlan", price: 40000 },
       { name: "Nod Krai", price: 30000 },
+    ],
+  },
+  {
+    region: "Kebutuhan Lainnya",
+    category: "Material",
+    items: [
+      { name: "Crystal Core 5pcs", price: 1000 },
+      { name: "Material World Boss 1pcs", price: 1000 },
+      { name: "Produk Khas Region 5pcs", price: 1000 },
+      { name: "Mineral Batu dan Kristal 10pcs", price: 1000 },
     ],
   },
 ];
