@@ -635,10 +635,10 @@ export const pricingData: RegionServiceBlock[] = [
     region: "Kebutuhan Lainnya",
     category: "Material",
     items: [
-      { name: "Crystal Core 5pcs", price: 1000 },
-      { name: "Material World Boss 1pcs", price: 1000 },
-      { name: "Produk Khas Region 5pcs", price: 1000 },
-      { name: "Mineral Batu dan Kristal 10pcs", price: 1000 },
+      { name: "Crystal Core / 5 pcs", price: 1000 },
+      { name: "Material World Boss / 1 pcs", price: 1000 },
+      { name: "Produk Khas Region / 5 pcs", price: 1000 },
+      { name: "Mineral Batu dan Kristal / 10 pcs", price: 1000 },
     ],
   },
 ];
