@@ -600,8 +600,8 @@ export const pricingData: RegionServiceBlock[] = [
     category: "Local Legend",
     items: [
       { name: "Nod Krai (per boss)", price: 10000 },
-      { name: "Natlan (per boss)", price: 10000 },
-      { name: "Fontaine (per boss)", price: 10000 },
+      { name: "Natlan (per boss)", price: 5000 },
+      { name: "Fontaine (per boss)", price: 5000 },
     ],
   },
 
