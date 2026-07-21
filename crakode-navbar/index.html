@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRAKODE - Premium Navbar</title>
+    <meta name="description" content="CRAKODE - Premium learning platform for futuristic tech.">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="#">CRAKODE</a>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="#" class="nav-item active">Home</a>
+                <a href="#" class="nav-item">About</a>
+                <a href="#" class="nav-item">Learning Path</a>
+                <a href="#" class="nav-item">Tutorials</a>
+                <a href="#" class="nav-item">Projects</a>
+                <a href="#" class="nav-item">Community</a>
+                <a href="#" class="nav-item">Contact</a>
+                <div class="active-highlight"></div>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="icon-btn search-btn" aria-label="Search">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <button class="icon-btn theme-btn" aria-label="Toggle Dark Mode" id="theme-toggle">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="moon-icon">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+                <button class="primary-btn">Get Started</button>
+                
+                <button class="hamburger" aria-label="Menu" id="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-nav-links">
+            <a href="#" style="--i:1;">Home</a>
+            <a href="#" style="--i:2;">About</a>
+            <a href="#" style="--i:3;">Learning Path</a>
+            <a href="#" style="--i:4;">Tutorials</a>
+            <a href="#" style="--i:5;">Projects</a>
+            <a href="#" style="--i:6;">Community</a>
+            <a href="#" style="--i:7;">Contact</a>
+            <button class="primary-btn mobile-btn" style="--i:8;">Get Started</button>
+        </div>
+    </div>
+
+    <!-- Dummy Hero Section to demonstrate scrolling effects -->
+    <div class="hero-section">
+        <h1>Welcome to <span class="highlight">CRAKODE</span></h1>
+        <p>The premium learning platform for futuristic tech. Scroll down to see the navigation bar in action.</p>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
