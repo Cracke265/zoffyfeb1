@@ -326,7 +326,7 @@ export const pricingData: RegionServiceBlock[] = [
       { name: "Gurun Pasir — Desert Of Hadramaveth", price: 100000, group: "Explore Gurun Pasir" },
       { name: "Gurun Pasir — Gavireh Lajavan", price: 55000, group: "Explore Gurun Pasir" },
       { name: "Gurun Pasir — Realm Of Farakhkert", price: 50000, group: "Explore Gurun Pasir" },
-      { name: "All Dendroculus", price: 250000, group: "Spesial Item" },
+      { name: "All Dendroculus", price: 200000, group: "Spesial Item" },
       { name: "All Plume of Purifying Light", price: 35000, group: "Spesial Item" },
     ],
   },
@@ -379,7 +379,7 @@ export const pricingData: RegionServiceBlock[] = [
       { name: "Fontaine Research Institute", price: 60000 },
       { name: "Erinnyes Forest", price: 40000 },
       { name: "Morte Region", price: 55000 },
-      { name: "All Hydroculus", price: 250000 },
+      { name: "All Hydroculus", price: 200000 },
     ],
   },
   {
@@ -432,7 +432,7 @@ export const pricingData: RegionServiceBlock[] = [
       { name: "Ochkanatlan", price: 50000 },
       { name: "Atocpan", price: 55000 },
       { name: "Easybreeze Holiday Resort", price: 100000 },
-      { name: "All Pyroculus", price: 250000 },
+      { name: "All Pyroculus", price: 200000 },
     ],
   },
   {
