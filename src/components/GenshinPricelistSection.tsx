@@ -100,7 +100,6 @@ const regionMeta: Record<string, { subtitle: string; icon: React.ElementType; ic
   Mondstadt: { subtitle: "City of Freedom", icon: Wind, iconColor: "text-sky-400", shadow: "shadow-[0_0_20px_rgba(56,189,248,0.5)] border-sky-400/30" },
   Liyue: { subtitle: "Land of Contracts", icon: Mountain, iconColor: "text-amber-500", shadow: "shadow-[0_0_20px_rgba(245,158,11,0.5)] border-amber-500/30" },
   Inazuma: { subtitle: "Eternity & Thunder", icon: Zap, iconColor: "text-fuchsia-500", shadow: "shadow-[0_0_20px_rgba(217,70,239,0.5)] border-fuchsia-500/30" },
-  "Sumeru Desert": { subtitle: "Sea of Sand", icon: Leaf, iconColor: "text-emerald-500", shadow: "shadow-[0_0_20px_rgba(16,185,129,0.5)] border-emerald-500/30" },
   Sumeru: { subtitle: "Land of Wisdom", icon: Leaf, iconColor: "text-emerald-500", shadow: "shadow-[0_0_20px_rgba(16,185,129,0.5)] border-emerald-500/30" },
   Fontaine: { subtitle: "Nation of Justice", icon: Droplet, iconColor: "text-blue-500", shadow: "shadow-[0_0_20px_rgba(59,130,246,0.5)] border-blue-500/30" },
   Natlan: { subtitle: "Land of Fire", icon: Flame, iconColor: "text-red-500", shadow: "shadow-[0_0_20px_rgba(239,68,68,0.5)] border-red-500/30" },

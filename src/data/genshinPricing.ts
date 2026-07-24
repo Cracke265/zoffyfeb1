@@ -25,7 +25,7 @@ export type RegionKey =
   | "Mondstadt"
   | "Liyue"
   | "Inazuma"
-  | "Sumeru Desert"
+  | "Sumeru"
   | "Fontaine"
   | "Natlan"
   | "Nod Krai"
@@ -71,7 +71,7 @@ export const regionTheme: Record<
     glow: "shadow-[0_0_40px_-5px_rgba(217,70,239,0.6)]",
     label: "text-fuchsia-200",
   },
-  "Sumeru Desert": {
+  "Sumeru": {
     from: "from-emerald-400/30",
     to: "to-green-700/10",
     ring: "ring-emerald-400/40",
@@ -126,7 +126,7 @@ export const allRegions: RegionKey[] = [
   "Mondstadt",
   "Liyue",
   "Inazuma",
-  "Sumeru Desert",
+  "Sumeru",
   "Fontaine",
   "Natlan",
   "Nod Krai",
@@ -310,7 +310,7 @@ export const pricingData: RegionServiceBlock[] = [
 
   // ───── SUMERU DESERT ─────
   {
-    region: "Sumeru Desert",
+    region: "Sumeru",
     category: "Explore",
     items: [
       { name: "Gurun Hijau — Lokapala Jungle", price: 45000, group: "Explore Gurun Hijau" },
@@ -331,7 +331,7 @@ export const pricingData: RegionServiceBlock[] = [
     ],
   },
   {
-    region: "Sumeru Desert",
+    region: "Sumeru",
     category: "Quest",
     items: [
       { name: "Normal Quest Pendek", price: 15000 },
@@ -340,7 +340,7 @@ export const pricingData: RegionServiceBlock[] = [
     ],
   },
   {
-    region: "Sumeru Desert",
+    region: "Sumeru",
     category: "Quest Prasyarat Aranyaka",
     items: [
       { name: "Aranyaka I — Perjumpaan Di Hutan", price: 25000, group: "Quest Aranyaka" },
@@ -354,7 +354,7 @@ export const pricingData: RegionServiceBlock[] = [
     ],
   },
   {
-    region: "Sumeru Desert",
+    region: "Sumeru",
     category: "Quest Prasyarat Sumeru Gurun",
     items: [
       { name: "Dilema Afratus", price: 25000, group: "1. Land Of Upper Setekh" },
